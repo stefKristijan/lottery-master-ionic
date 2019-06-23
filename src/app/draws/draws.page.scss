@@ -1,0 +1,57 @@
+label{
+    display:block;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    font-size: x-small;
+  }
+  
+  .last {
+    margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid gainsboro;
+    display: inline;
+  }
+  
+  img{
+    height: 35px;
+  }
+  
+  .container{
+    width: 100%;
+    height: 100%;
+  }
+  
+  ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .list-item{
+    flex: 0 0 auto;
+    display: block;
+  }
+  
+  ion-grid{
+    width: 100%;
+    height: auto;
+    overflow-x: scroll;
+  }
+  
+  ion-row{
+    width: max-content;
+    height: fit-content;
+  
+    .label{
+      float: left;
+    }
+  }
+    
+  .ball{
+    display: inline-block;
+    }
+  

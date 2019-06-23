@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar class="main">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{lotteryName}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let draw of draws" flex-wrap="nowrap" align-items="stretch">
+      <label>{{draw.date | date:"dd.MM.yyyy."}}</label>
+      <img class="ball" *ngFor="let num of draw.numbers" src="../../assets/{{num}}.png" />
+      <div class="last" *ngIf="draw.extraNumbers.length > 0">
+        <img *ngFor="let extraNum of draw.extraNumbers" src="../../assets/{{extraNum}}.png" />
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>
