@@ -12,7 +12,7 @@
             <ion-searchbar (ionInput)="onInput($event)"></ion-searchbar>
           </ion-item>
           <ion-menu-toggle auto-hide="false" *ngFor="let lottery of lotteries">
-            <ion-item [routerDirection]="'root'" routerLink="home/{{lottery.id}}">
+            <ion-item routerLink="/home/{{lottery.id}}">
               <ion-label>
                 {{lottery.name}}
                 <span>{{lottery.draw}}/{{lottery.maxNumber}}</span>

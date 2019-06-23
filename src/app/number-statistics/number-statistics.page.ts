@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NumberStatistics } from '../model/number-statistics';
+import { LotteryService } from '../service/lottery.service';
+import { ActivatedRoute } from '@angular/router';
+import { StatisticsService } from '../service/statistics.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NumberStat } from '../model/number-stat';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-number-statistics',
@@ -7,9 +14,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NumberStatisticsPage implements OnInit {
 
-  constructor() { }
+  lotteryName: string;
+  lotteryId : number;
+  maxDraws: number;
+  numberStats: NumberStatistics;
+  draws=20;
+
+
+  constructor(
+    private lotteryService: LotteryService,
+    private statisticsService: StatisticsService,
+    private router: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.lotteryId = +localStorage.getItem("currentLottery");
+    this.lotteryService.lotteryById(this.lotteryId).subscribe((l => {
+      this.lotteryName = l.name;
+    }),
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
+
+    this.statisticsService.numberStatistics(this.lotteryId, this.draws).subscribe((stat => {
+      this.numberStats = stat;
+    }),
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
+
+    this.lotteryService.lotteryDraws(this.lotteryId).subscribe((draws => {
+      this.maxDraws = draws.length;
+    }),
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
+  }
+
+
+  refreshStats(){
+    this.statisticsService.numberStatistics(this.lotteryId, this.draws).subscribe((stat => {
+      this.numberStats = stat;
+    }),
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
   }
 
 }

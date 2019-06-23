@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>number-statistics</ion-title>
+  <ion-toolbar class="main">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{lotteryName}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="numberStats != null">
+  <ion-item>
+    <ion-label id="drawNumber">Broj izvlačenja:</ion-label>
+    <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
+      <ion-label slot="start">2</ion-label>
+      <ion-label slot="end">{{maxDraws}}</ion-label>
+    </ion-range>
+    <ion-button id="refreshBtn" shape="round" (click)="refreshStats()">
+      <ion-icon slot="icon-only" name="refresh"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-row flex-wrap="nowrap" align-items="stretch">
+    <div class="numStat" *ngFor="let num of numberStats.stats">
+      <div class="drawn">{{num.drawn}}</div>
+      <img class="ball" src="../../assets/{{num.number}}.png" />
+      <div class="notDrawn">{{num.cyclesNotDrawn}}</div>
+    </div>
+  </ion-row>
 </ion-content>
