@@ -1,9 +1,84 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>range-statistics</ion-title>
+  <ion-toolbar class="main">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{lotteryName}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="rangeStats != null && rangeStats.stats.length > 0">
+  <ion-item>
+    <ion-label class="rangeLabelDraws">Broj izvlačenja:</ion-label>
+    <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
+      <ion-label slot="start">2</ion-label>
+      <ion-label slot="end">{{maxDraws}}</ion-label>
+    </ion-range>
+  </ion-item>
+  <ion-item>
+    <div class="rangeDiv">
+      <ion-label class="rangeLabel">Interval brojeva:</ion-label>
+      <ion-range min="2" max="10" step="1" pin="true" [(ngModel)]="range">
+        <ion-label slot="start">2</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </div>
+    <div class="rangeDiv">
+      <ion-label class="rangeLabel">Interval dopunskih:</ion-label>
+      <ion-range min="2" max="10" step="1" ticks="true" pin="true" [(ngModel)]="extraRange">
+        <ion-label slot="start">2</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </div>
+  </ion-item>
+    <ion-button id="refreshBtn" expand="full" size="small" (click)="refreshStats()">
+      Osvježi
+    </ion-button>
+  <ion-grid>
+    <ion-row class="groupTitle" flex-wrap="nowrap" align-items="stretch">
+      <ion-item>
+        <ion-label>Statistika intervala dopunskih brojeva</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row flex-wrap="nowrap" align-items="stretch">
+      <ion-col *ngFor="let num of rangeStats.stats">
+        <div class="ballsRangeDiv">
+          <img class="ball" src="../../assets/{{num.from}}.svg" />
+          <p>-</p>
+          <img class="ball" src="../../assets/{{num.to}}.svg" />
+          <div class="stat">{{num.draws/(currentDraws * (num.to - num.from + 1)) * 100 | number : '1.0-2'}}%</div>
+        </div>
+        <div *ngFor="let n of numberStats.stats">
+          <div class="numberStatWrapper" *ngIf="n.number <= num.to && n.number >= num.from">
+            <img class="ball" src="../../assets/{{n.number}}.svg" />
+            <div class="stat">{{n.drawn/num.draws * 100 | number : '1.0-2'}}%</div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="groupTitle" *ngIf="rangeStats.extraStats != null && rangeStats.extraStats.length > 0" flex-wrap="nowrap"
+      align-items="stretch">
+      <ion-item>
+        <ion-label>Statistika intervala dopunskih brojeva</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row *ngIf="rangeStats.extraStats != null && rangeStats.extraStats.length > 0" flex-wrap="nowrap" align-items="stretch">
+      <ion-col *ngFor="let num of rangeStats.extraStats">
+        <div class="ballsRangeDiv">
+          <img class="ball" src="../../assets/{{num.from}}.svg" />
+          <p>-</p>
+          <img class="ball" src="../../assets/{{num.to}}.svg" />
+          <div class="stat">{{num.draws/(currentDraws * (num.to - num.from + 1)) * 100 | number : '1.0-2'}}%</div>
+        </div>
+        <div *ngFor="let n of numberStats.extraStats">
+          <div class="numberStatWrapper" *ngIf="n.number <= num.to && n.number >= num.from">
+            <img class="ball" src="../../assets/{{n.number}}.svg" />
+            <div class="stat">{{n.drawn/num.draws * 100 | number : '1.0-2'}}%</div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

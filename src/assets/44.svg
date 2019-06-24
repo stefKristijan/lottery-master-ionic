@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 373 373" style="enable-background:new 0 0 373 373;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{opacity:0.5;fill:#FFFFFF;stroke:#FFFFFF;stroke-miterlimit:10;enable-background:new    ;}
+	.st2{opacity:0.9;fill:none;stroke:#FFFFFF;stroke-width:15;stroke-miterlimit:10;enable-background:new    ;}
+	.st3{fill:none;}
+	.st4{enable-background:new    ;}
+</style>
+<radialGradient id="SVGID_1_" cx="186.5" cy="361.5" r="186.5" gradientTransform="matrix(1 0 0 -1 0 548)" gradientUnits="userSpaceOnUse">
+	<stop  offset="6.926126e-08" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.6797" style="stop-color:#820E4E"/>
+	<stop  offset="1" style="stop-color:#720E4E"/>
+</radialGradient>
+<circle class="st0" cx="186.5" cy="186.5" r="186.5"/>
+<circle class="st1" cx="187" cy="182" r="95.5"/>
+<ellipse class="st2" cx="187" cy="182" rx="110.5" ry="112.5"/>
+<rect x="144.5" y="151" class="st3" width="85" height="62"/>
+<g class="st4">
+	<path d="M150.6,235.9v-21.6h-43.9v-18l46.6-68.2h17.3v68.1h13.3v18.1h-13.3v21.6H150.6z M150.6,196.2v-36.7L126,196.2H150.6z"/>
+	<path d="M234.1,235.9v-21.6h-43.9v-18l46.6-68.2H254v68.1h13.3v18.1H254v21.6H234.1z M234.1,196.2v-36.7l-24.7,36.7H234.1z"/>
+</g>
+</svg>

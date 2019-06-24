@@ -13,6 +13,7 @@ export class HomePage {
 
   draws = [];
   lotteryName: string;
+  router:ActivatedRoute;
 
   constructor(
     private http: HttpClient,
@@ -21,6 +22,7 @@ export class HomePage {
   ) { }
 
   ngOnInit() {
+    this.router = this.route;
     localStorage.setItem("currentLottery", this.route.snapshot.paramMap.get('id'));
   }
 

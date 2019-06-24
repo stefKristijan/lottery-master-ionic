@@ -16,15 +16,30 @@
       <ion-label slot="start">2</ion-label>
       <ion-label slot="end">{{maxDraws}}</ion-label>
     </ion-range>
-    <ion-button id="refreshBtn" shape="round" (click)="refreshStats()">
-      <ion-icon slot="icon-only" name="refresh"></ion-icon>
-    </ion-button>
   </ion-item>
+  <ion-button id="refreshBtn" expand="full" size="small" (click)="refreshStats()">
+      Osvježi
+    </ion-button>
+  <ion-row flex-wrap="nowrap" align-items="stretch">
+    <ion-item class="groupTitle">
+      <ion-label>Statistika brojeva</ion-label>
+    </ion-item>
+  </ion-row>
   <ion-row flex-wrap="nowrap" align-items="stretch">
     <div class="numStat" *ngFor="let num of numberStats.stats">
       <div class="drawn">{{num.drawn}}</div>
-      <img class="ball" src="../../assets/{{num.number}}.png" />
+      <img class="ball" src="../../assets/{{num.number}}.svg" />
       <div class="notDrawn">{{num.cyclesNotDrawn}}</div>
+    </div>
+  </ion-row>
+  <ion-row *ngIf="numberStats.extraStats != null && numberStats.extraStats.length > 0">
+    <ion-item class="groupTitle">
+      <ion-label>Statistika dopunskih brojeva</ion-label>
+    </ion-item>
+    <div class="numStat" *ngFor="let en of numberStats.extraStats">
+      <div class="drawn">{{en.drawn}}</div>
+      <img class="ball" src="../../assets/{{en.number}}.svg" />
+      <div class="notDrawn">{{en.cyclesNotDrawn}}</div>
     </div>
   </ion-row>
 </ion-content>

@@ -9,7 +9,7 @@ import { RangeStatistics } from '../model/range-statistics';
 })
 export class StatisticsService {
 
-  private lotteryUrl = 'http://localhost:8080/api/lottery';
+  private lotteryUrl = 'http://192.168.0.15:8080/api/lottery';
 
   constructor(private http: HttpClient) { }
 

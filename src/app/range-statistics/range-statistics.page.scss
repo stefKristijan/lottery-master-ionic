@@ -1,0 +1,99 @@
+.ballsRangeDiv{
+    display: inline-block;
+    margin-right: 2px;
+    padding: 0;
+    width: max-content;
+}
+
+p{
+    display: inline;
+    position: relative;
+    bottom: 17px;
+    margin: 0 2px 0 2px;
+}
+
+ .stat {
+    border: 1px solid grey;
+    border-radius: 20px;
+    width:fit-content;
+    padding:2px;
+     position: relative;
+     bottom: 10px;
+    margin: 0 auto;
+    background-color: rgba(141, 12, 12, 0.7);
+    font-size: 10px;
+    text-align: center;
+    color: white;
+ }
+
+ img{
+     display: inline-block;
+ }
+
+ .rangeLabel{
+     overflow: visible;
+     font-size: 12px;
+     margin-top: 40px;
+ }
+
+ .rangeLabelDraws{
+     overflow: visible;
+     font-size: 12px;
+     margin-top: 30px;
+ }
+
+ .groupTitle{
+     width: 100%;
+     margin-right: 7%;
+     display: block;
+ }
+
+ion-grid{
+    width: 100%;
+    height: auto;
+    overflow-x: scroll;
+}
+
+ ion-row{
+     width: max-content;
+     margin-left:10px;
+ }
+
+ ion-col{
+     border-right: 1px solid gainsboro;
+ }
+ 
+ .ball{
+     width: 40px;
+ }
+
+ .numberStatWrapper{
+    width:fit-content;
+     position: relative;
+    margin: 0 auto;
+ }
+
+ .groupTitle{
+    width: fit-content;
+    margin-right: 7%;
+    margin-bottom: 10px;
+}
+
+.rangeDiv{
+    width: 50%;
+    display: inline-flex;
+}
+
+@media only screen and (max-width: 450px) {
+    .rangeDiv {
+      display: inline-block;
+      height: 100px;
+      bottom:25px;
+      position: relative;
+    }
+
+    .rangeLabel{
+        position: relative;
+        text-align: center;
+    }
+  }
