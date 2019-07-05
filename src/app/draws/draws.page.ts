@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LotteryService } from '../service/lottery.service';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { HomePage } from '../home/home.page';
+import { Draw } from '../model/draw';
 
 @Component({
   selector: 'app-draws',

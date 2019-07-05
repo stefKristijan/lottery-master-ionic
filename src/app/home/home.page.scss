@@ -1,0 +1,10 @@
+@media only screen and (max-width: 330px) {
+    ion-label{
+        visibility: hidden;
+    }
+
+    ion-tab-button{
+        width: 25%;
+       margin-top: 20px;
+    }
+  }

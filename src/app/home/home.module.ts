@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'range-statistics',
         loadChildren: '../range-statistics/range-statistics.module#RangeStatisticsPageModule'
+      },
+      {
+        path: 'most-common',
+        loadChildren: '../most-common/most-common.module#MostCommonPageModule'
       }
     ]
   },

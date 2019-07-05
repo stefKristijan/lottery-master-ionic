@@ -1,0 +1,113 @@
+ion-grid{
+    width: 100%;
+    height: auto;
+    overflow-x: scroll;
+  }
+
+  ion-row{
+    width: 100%;
+    height: fit-content;
+  }
+
+  .col{
+      width: 50%;
+  }
+
+  .mostCommonDiv{
+      margin: 5px auto;
+  }
+
+  .imgDiv{
+      position: relative;
+      margin: 0 auto;
+      text-align: center;
+    align-items: center;
+    align-content: center;
+    z-index: 2;
+  }
+
+  .groupTitle{
+    width: 100%;
+    margin-right: 7%;
+    display: block;
+}
+
+  .drawnDiv{
+    border: 1px solid grey;
+    border-radius: 20px;
+    position: relative;
+    top:5px;
+    width:fit-content;
+    margin: 0 auto;
+    padding: 2px 10px;
+    background-color: rgba(58, 65, 57, 0.7);
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    z-index: 10;
+}
+
+.drawnPercDiv {
+    border: 1px solid grey;
+    border-radius: 20px;
+    position: relative;
+    width:fit-content;
+    margin: 0 auto;
+    padding: 2px 10px;
+    bottom: 7px;
+    background-color: rgba(58, 65, 57, 0.7);
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    z-index: 10;
+ }
+
+  img{
+    width: 40px;
+    display: inline-block;
+    margin: 0;
+    }
+
+.last {
+    margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid gainsboro;
+    display: inline-block;
+  }
+
+.rangeLabel{
+    overflow: visible;
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.rangeLabelDraws{
+    overflow: visible;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.rangeDiv{
+    width: 50%;
+    display: inline-flex;
+}
+
+@media only screen and (max-width: 450px) {
+    .rangeDiv {
+      display: inline-block;
+      height: 100px;
+      bottom:25px;
+      position: relative;
+    }
+
+    .rangeLabel{
+        position: relative;
+        text-align: center;
+    }
+
+    ion-row{
+        width: max-content;
+        height: fit-content;
+        margin: 0 auto;
+      }
+  }

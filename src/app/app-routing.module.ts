@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: 'home/:id',
     loadChildren: './home/home.module#HomePageModule'
-  }
+  },
+  { path: 'most-common', loadChildren: './most-common/most-common.module#MostCommonPageModule' }
 ];
 
 @NgModule({

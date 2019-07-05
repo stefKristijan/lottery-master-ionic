@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="rangeStats != null && rangeStats.stats.length > 0">
+<ion-content *ngIf="rangeStats != null && rangeStats.stats.length > 0 && numberStats != null && numberStats.stats.length > 0">
   <ion-item>
     <ion-label class="rangeLabelDraws">Broj izvlačenja:</ion-label>
     <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
@@ -20,14 +20,14 @@
   <ion-item>
     <div class="rangeDiv">
       <ion-label class="rangeLabel">Interval brojeva:</ion-label>
-      <ion-range min="2" max="10" step="1" pin="true" [(ngModel)]="range">
+      <ion-range min="2" max="10" step="1" ticks="true" snaps="true" pin="true" [(ngModel)]="range">
         <ion-label slot="start">2</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </div>
     <div class="rangeDiv">
       <ion-label class="rangeLabel">Interval dopunskih:</ion-label>
-      <ion-range min="2" max="10" step="1" ticks="true" pin="true" [(ngModel)]="extraRange">
+      <ion-range min="2" max="10" step="1" ticks="true" snaps="true" pin="true" [(ngModel)]="extraRange">
         <ion-label slot="start">2</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
@@ -39,7 +39,7 @@
   <ion-grid>
     <ion-row class="groupTitle" flex-wrap="nowrap" align-items="stretch">
       <ion-item>
-        <ion-label>Statistika intervala dopunskih brojeva</ion-label>
+        <ion-label>Statistika intervala brojeva</ion-label>
       </ion-item>
     </ion-row>
     <ion-row flex-wrap="nowrap" align-items="stretch">

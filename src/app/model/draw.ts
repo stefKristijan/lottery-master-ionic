@@ -1,6 +1,6 @@
 export class Draw{
     id:number;
-    date:Date;
+    time:Date;
     numbers:number[];
     extraNumbers:number[];
 }
