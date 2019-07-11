@@ -10,6 +10,11 @@
 </ion-header>
 
 <ion-content *ngIf="mostCommonStatistics != null">
+    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+        <ion-fab-button size="small" color="danger" routerLink="/{{lotteryId}}/generator">
+          <ion-icon name="flash"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
   <ion-item>
     <ion-label class="rangeLabelDraws">Broj izvlačenja:</ion-label>
     <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">

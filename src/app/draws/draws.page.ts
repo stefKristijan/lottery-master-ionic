@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LotteryService } from '../service/lottery.service';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { HomePage } from '../home/home.page';
 import { Draw } from '../model/draw';
+import { getLocaleId, getLocaleDateTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-draws',

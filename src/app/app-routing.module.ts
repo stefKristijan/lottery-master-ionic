@@ -11,7 +11,8 @@ const routes: Routes = [
     path: 'home/:id',
     loadChildren: './home/home.module#HomePageModule'
   },
-  { path: 'most-common', loadChildren: './most-common/most-common.module#MostCommonPageModule' }
+  { path: ':id/generator', loadChildren: './generator/generator.module#GeneratorPageModule' },
+  { path: 'purchase', loadChildren: './purchase/purchase.module#PurchasePageModule' }
 ];
 
 @NgModule({

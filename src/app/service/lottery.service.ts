@@ -3,31 +3,29 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Lottery } from '../model/lottery';
 import { Draw } from '../model/draw';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LotteryService {
 
-//  lotteryUrl = 'http://192.168.0.15:8080/api/lottery';
- lotteryUrl = 'http://18.194.88.128:9090/api/lottery';
-
   constructor(
     private http: HttpClient
   ) { }
 
   lotteryById(lotteryId: number): Observable<Lottery> {
-    return this.http.get<Lottery>(this.lotteryUrl + "/" + lotteryId);    
+    return this.http.get<Lottery>(environment.lotteryUrl + "/" + lotteryId);    
   }
 
   lotteryList(): Observable<Lottery[]> {
-    return this.http.get<Lottery[]>(this.lotteryUrl);
+    return this.http.get<Lottery[]>(environment.lotteryUrl);
   }
 
   lotteryDraws(lotteryId: number): Observable<Draw[]> {
     let params = new HttpParams()
       .set("page", "0")
       .set("size", "200");
-    return this.http.get<Draw[]>(this.lotteryUrl + "/" + lotteryId + "/draws", { params });
+    return this.http.get<Draw[]>(environment.lotteryUrl + "/" + lotteryId + "/draws", { params });
   }
 }

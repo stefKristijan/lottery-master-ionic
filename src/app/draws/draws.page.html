@@ -10,9 +10,14 @@
 </ion-header>
  
 <ion-content>
+    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+        <ion-fab-button size="small" color="danger" routerLink="/{{lotteryId}}/generator">
+          <ion-icon name="flash"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
   <ion-grid>
     <ion-row *ngFor="let draw of draws" flex-wrap="nowrap" align-items="stretch">
-      <label>{{draw.time | date:"dd.MM.yyyy. HH:mm"}}</label>
+      <label>{{draw.time | date:"medium"}}</label>
       <img class="ball" *ngFor="let num of draw.numbers" src="../../assets/{{num}}.svg" />
       <div class="last" *ngIf="draw.extraNumbers.length > 0">
         <img *ngFor="let extraNum of draw.extraNumbers" src="../../assets/{{extraNum}}.svg" />
