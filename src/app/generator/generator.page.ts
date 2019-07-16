@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LotteryService } from '../service/lottery.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { StatisticsService } from '../service/statistics.service';
 import { NumberCoefficient } from '../model/number-coefficient';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-generator',
@@ -12,6 +13,7 @@ import { NumberCoefficient } from '../model/number-coefficient';
 })
 export class GeneratorPage implements OnInit {
 
+  user = null;
   lotteryId: number;
   lotteryName: string;
   numberCoefficients = [];
@@ -25,10 +27,12 @@ export class GeneratorPage implements OnInit {
   minDNc: number;
 
   constructor(
+    private _auth : AuthenticationService,
     private http: HttpClient,
     private lotteryService: LotteryService,
     private statisticsService: StatisticsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -36,16 +40,17 @@ export class GeneratorPage implements OnInit {
     this.lotteryService.lotteryById(this.lotteryId).subscribe((l => {
       this.lotteryName = l.name;
     }),
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      });
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    });
     this.statisticsService.generateNumbers(this.lotteryId).subscribe((nc => {
       this.findMinAndMaxCoefficients(nc);
       this.numberCoefficients = nc;
     }),
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      });
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    });
+    this.user = this._auth.user;
   }
 
 
@@ -78,6 +83,12 @@ export class GeneratorPage implements OnInit {
         this.maxDNc = c.drawnCoefficient;
       if (c.drawnCoefficient < this.minDNc)
         this.minDNc = c.drawnCoefficient;
+    });
+  }
+
+  logout() : void {
+    this._auth.logout().subscribe(data => {
+      this.router.navigate(['login']);
     });
   }
 }

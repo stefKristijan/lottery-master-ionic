@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="authUser()">
+    <ion-item>
+      <ion-label>E-mail:</ion-label>
+      <ion-input type="text" [(ngModel)]="loginForm.email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Lozinka:</ion-label>
+      <ion-textarea [(ngModel)]="loginForm.password" name="password" type="password"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" block>Prijava</button>
+  </form>
+    <h3 *ngIf="error != null">{{error}}</h3>
+</ion-content>

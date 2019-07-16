@@ -12,6 +12,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class StatisticsService {
+
+  private url: string = environment.remoteUrl + "api/lottery";
+
   constructor(private http: HttpClient) { }
 
   numberStatistics(lotteryId: number, draws: number): Observable<NumberStatistics> {
@@ -20,7 +23,7 @@ export class StatisticsService {
       params = params
         .set("draws", draws.toString());
     }
-    return this.http.get<NumberStatistics>(environment.lotteryUrl + "/" + lotteryId + "/number-stats", { params });
+    return this.http.get<NumberStatistics>(this.url + "/" + lotteryId + "/number-stats", { params });
   }
 
   rangeStatistics(lotteryId: number, draws: number, range: number, extraRange: number): Observable<RangeStatistics> {
@@ -37,7 +40,7 @@ export class StatisticsService {
       extraRange = 2;
     }
     params = params.set("extraRange", extraRange.toString());
-    return this.http.get<RangeStatistics>(environment.lotteryUrl + "/" + lotteryId + "/range-stats", { params });
+    return this.http.get<RangeStatistics>(this.url + "/" + lotteryId + "/range-stats", { params });
   }
 
   mostCommonStatistics(lotteryId: number, draws: number, quantity: number, extraQuantity: number): Observable<MostCommonStatistics> {
@@ -54,10 +57,10 @@ export class StatisticsService {
       extraQuantity = 2;
     }
     params = params.set("extraQuantity", extraQuantity.toString());
-    return this.http.get<MostCommonStatistics>(environment.lotteryUrl + "/" + lotteryId + "/most-common", { params });
+    return this.http.get<MostCommonStatistics>(this.url + "/" + lotteryId + "/most-common", { params });
   }
 
   generateNumbers(lotteryId: number): Observable<NumberCoefficient[]> {
-    return this.http.get<NumberCoefficient[]>(environment.lotteryUrl + "/" + lotteryId + "/calculate");
+    return this.http.get<NumberCoefficient[]>(this.url + "/" + lotteryId + "/calculate");
   }
 }

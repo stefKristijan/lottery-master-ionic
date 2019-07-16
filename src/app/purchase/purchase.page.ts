@@ -4,6 +4,9 @@ import { environment } from '../../environments/environment';
 import { Stripe } from '@ionic-native/stripe/ngx';
 import { TestObject } from 'protractor/built/driverProviders';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { USER_KEY } from '../service/authentication.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-purchase',
@@ -21,7 +24,9 @@ export class PurchasePage implements OnInit {
 
   constructor(
     private stripe: Stripe,
-    private customerService : CustomerService
+    private customerService : CustomerService,
+    private router : Router,
+    private storage : Storage
   ) { }
 
   ngOnInit() {
@@ -30,13 +35,15 @@ export class PurchasePage implements OnInit {
 
   pay(){
     this.stripe.createCardToken(this.card).then((token) => {
-      this.customerService.chargeCustomer(token.id).subscribe((l => {
-        console.log(l);
+      this.customerService.chargeCustomer(token.id).subscribe((user => {
+        this.storage.set(USER_KEY, JSON.stringify(user));
+        this.router.navigate(['generator'])
       }),
         (error: HttpErrorResponse) => {
           console.log(error);
         });
     })
+    .catch(error => console.log(error));
   }
 
 }

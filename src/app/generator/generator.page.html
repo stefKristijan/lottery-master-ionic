@@ -7,6 +7,14 @@
     </ion-toolbar>
 </ion-header>
 <button ion-button routerLink="/purchase">Purchase tickets</button>
+<ion-item>
+    <ion-avatar slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-label>{{user.email}}</ion-label>
+    <ion-label>{{user.generatesLeft}}</ion-label>
+  </ion-item>
+<button ion-button (click)="logout()">Logout</button>
 <ion-content *ngIf="numberCoefficients != null">
     <div class="numberCoefficient" *ngFor="let nc of numberCoefficients">
         <img class="ball" src="../../assets/{{nc.number}}.svg" />

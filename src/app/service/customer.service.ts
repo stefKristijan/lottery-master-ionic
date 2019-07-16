@@ -9,6 +9,8 @@ import { AppModule } from '../app.module';
   providedIn: 'root'
 })
 export class CustomerService {
+  
+  private url: string = environment.remoteUrl;
 
   constructor(
     private http: HttpClient
@@ -18,8 +20,8 @@ export class CustomerService {
     console.log("Token: " + token);
     let params = new HttpParams()
     params = params.set("token", token)
-      .set("amount", "2");
-    return this.http.post<User>(environment.remoteUrl + '/customer/charge', {},  {params});
+      .set("sku", "sku_FPwZsulv5f7wf5");
+    return this.http.post<User>(this.url + 'checkout', {},  {params});
   }
 
 

@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PurchasePage } from './purchase.page';
-import { Stripe } from '@ionic-native/stripe/ngx';
-import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
-import { SQLite } from '@ionic-native/sqlite/ngx';
+import { LoginPage } from './login.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PurchasePage
+    component: LoginPage
   }
 ];
 
@@ -24,11 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers:[
-    Stripe,
-    SQLite,
-    SQLitePorter
-  ],
-  declarations: [PurchasePage]
+  declarations: [LoginPage]
 })
-export class PurchasePageModule {}
+export class LoginPageModule { }

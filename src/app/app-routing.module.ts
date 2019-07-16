@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,8 +12,17 @@ const routes: Routes = [
     path: 'home/:id',
     loadChildren: './home/home.module#HomePageModule'
   },
-  { path: ':id/generator', loadChildren: './generator/generator.module#GeneratorPageModule' },
-  { path: 'purchase', loadChildren: './purchase/purchase.module#PurchasePageModule' }
+  {
+    path: ':id/generator',
+    canActivate: [AuthGuard],
+    loadChildren: './generator/generator.module#GeneratorPageModule'
+  },
+  {
+    path: 'purchase',
+    canActivate: [AuthGuard],
+    loadChildren: './purchase/purchase.module#PurchasePageModule'
+  },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
 ];
 
 @NgModule({
@@ -21,4 +31,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

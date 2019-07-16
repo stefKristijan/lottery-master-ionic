@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-<ion-input [(ngModel)] = "card.number" placeholder="Card number"></ion-input>
-<ion-input [(ngModel)] = "card.expMonth" placeholder="MM"></ion-input>
-<ion-input [(ngModel)] = "card.expYear" placeholder="YY"></ion-input>
-<ion-input [(ngModel)] = "card.cvc" placeholder="CVC"></ion-input>
-<button (click)="pay()"> Purchase tickets</button>
+  <ion-input [(ngModel)]="card.number" placeholder="Card number"></ion-input>
+  <ion-input [(ngModel)]="card.expMonth" placeholder="MM"></ion-input>
+  <ion-input [(ngModel)]="card.expYear" placeholder="YY"></ion-input>
+  <ion-input [(ngModel)]="card.cvc" placeholder="CVC"></ion-input>
+  <button (click)="pay()"> Purchase tickets</button>
 </ion-content>
