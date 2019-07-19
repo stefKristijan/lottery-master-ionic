@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { USER_KEY } from '../service/authentication.service';
 import { Storage } from '@ionic/storage';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-purchase',
@@ -25,7 +26,7 @@ export class PurchasePage implements OnInit {
   constructor(
     private stripe: Stripe,
     private customerService : CustomerService,
-    private router : Router,
+    private _location: Location,
     private storage : Storage
   ) { }
 
@@ -36,8 +37,9 @@ export class PurchasePage implements OnInit {
   pay(){
     this.stripe.createCardToken(this.card).then((token) => {
       this.customerService.chargeCustomer(token.id).subscribe((user => {
+        this.storage.remove(USER_KEY);
         this.storage.set(USER_KEY, JSON.stringify(user));
-        this.router.navigate(['generator'])
+        this._location.back();
       }),
         (error: HttpErrorResponse) => {
           console.log(error);

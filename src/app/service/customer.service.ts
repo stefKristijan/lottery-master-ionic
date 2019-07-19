@@ -10,7 +10,7 @@ import { AppModule } from '../app.module';
 })
 export class CustomerService {
   
-  private url: string = environment.remoteUrl;
+  private url: string = environment.remoteUrl + "api/";
 
   constructor(
     private http: HttpClient
