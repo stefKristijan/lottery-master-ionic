@@ -20,8 +20,8 @@ export class CustomerService {
     console.log("Token: " + token);
     let params = new HttpParams()
     params = params.set("token", token)
-      .set("sku", "sku_FPwZsulv5f7wf5");
-    return this.http.post<User>(this.url + 'checkout', {},  {params});
+      .set("sku", "sku_FUluuybTDuxAeT");
+    return this.http.post<User>(this.url + 'generator/buy-tickets', {},  {params});
   }
 
 
