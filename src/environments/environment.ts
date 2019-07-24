@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // remoteUrl : 'http://192.168.88.206:8080/',
-  remoteUrl : 'http://localhost:8080/',
+  remoteUrl : 'http://192.168.0.15:8080/',
   // remoteUrl: 'http://18.194.88.128:9090/',
   // public_key: 'pk_test_dsYZN1QfgxmZ0CA6M3kgEJ0n00VpCLH7Ny'
   public_key: 'pk_live_c9qg6lmIMpeV2yvAf1wHVQ8300zjHgMf85'
