@@ -24,5 +24,10 @@ export class CustomerService {
     return this.http.post<User>(this.url + 'generator/buy-tickets', {},  {params});
   }
 
+  savePaymentMethod(paymentMethodId : string) : Observable<any>{
+    const form = new FormData();
+    form.append('paymentMethodId', paymentMethodId);
+    return this.http.post<any>(this.url + 'customer/save-payment-method', form);
+  }
 
 }

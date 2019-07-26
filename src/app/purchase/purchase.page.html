@@ -5,9 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-input [(ngModel)]="card.number" placeholder="Card number"></ion-input>
-  <ion-input [(ngModel)]="card.expMonth" placeholder="MM"></ion-input>
-  <ion-input [(ngModel)]="card.expYear" placeholder="YY"></ion-input>
-  <ion-input [(ngModel)]="card.cvc" placeholder="CVC"></ion-input>
-  <button (click)="pay()"> Purchase tickets</button>
+    <form (ngSubmit)="pay()">
+        <ion-item>
+          <ion-label>Name:</ion-label>
+          <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+        </ion-item>
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+          </div>
+        <button ion-button type="submit" block>Pay</button>
+        </form>
 </ion-content>
