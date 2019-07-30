@@ -7,6 +7,54 @@ ion-content p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2em;
     text-align: center;
-    margin: 3em auto; 
+    margin: 3em auto;
+}
+
+form ion-item {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    text-align: center;
+    display: block;
+    width: 20%;
+    border-radius: 0.5em;
+    box-shadow: 0 4px 2px -2px #4aa200;
+    -webkit-box-shadow: 0 4px 2px -2px #4aa200;
+    -moz-box-shadow: 0 4px 2px -2px #4aa200;
+    margin: 3em auto;
+}
+
+ion-input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+}
+
+form ion-button {
+    display: block;
+    width: 25%;
+    margin: 2em auto;
+}
+
+form i {
+    
+}
+
+form p {
+    margin: 1em auto;
+}
+
+ion-button {
+    --ion-color-success: #4aa200;
+    --ion-color-success-rgb: 74,162,0;
+    --ion-color-success-contrast: #ffffff;
+    --ion-color-success-contrast-rgb: 255,255,255;
+    --ion-color-success-shade: #418f00;
+    --ion-color-success-tint: #5cab1a;
+    --ion-color-danger: #500057;
+  --ion-color-danger-rgb: 80,0,87;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255,255,255;
+  --ion-color-danger-shade: #46004d;
+  --ion-color-danger-tint: #621a68;
+    --border-radius: 0.5em;
 }
 
