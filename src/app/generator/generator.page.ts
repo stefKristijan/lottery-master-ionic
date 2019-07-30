@@ -13,7 +13,7 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class GeneratorPage implements OnInit {
 
-  user = null;
+  user = this._auth.user;
   lotteryId: number;
   lotteryName: string;
   numberCoefficients = [];
@@ -27,7 +27,7 @@ export class GeneratorPage implements OnInit {
   minDNc: number;
 
   constructor(
-    private _auth : AuthenticationService,
+    private _auth: AuthenticationService,
     private http: HttpClient,
     private lotteryService: LotteryService,
     private statisticsService: StatisticsService,
@@ -40,17 +40,16 @@ export class GeneratorPage implements OnInit {
     this.lotteryService.lotteryById(this.lotteryId).subscribe((l => {
       this.lotteryName = l.name;
     }),
-    (error: HttpErrorResponse) => {
-      console.log(error);
-    });
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
     this.statisticsService.generateNumbers(this.lotteryId).subscribe((nc => {
       this.findMinAndMaxCoefficients(nc);
       this.numberCoefficients = nc;
     }),
-    (error: HttpErrorResponse) => {
-      console.log(error);
-    });
-    this.user = this._auth.user;
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
   }
 
 
@@ -86,7 +85,7 @@ export class GeneratorPage implements OnInit {
     });
   }
 
-  logout() : void {
+  logout(): void {
     this._auth.logout().subscribe(data => {
       this.router.navigate(['login']);
     });

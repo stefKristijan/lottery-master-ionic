@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Verify account</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <h2>A four digit code has been sent to your email. Please confirm your account by wrtiting that code below.</h2>
+    <form (ngSubmit)="verifyUser()">
+      <ion-item>
+        <ion-label>Verification code:</ion-label>
+        <ion-input type="number" [(ngModel)]="code" name="code"></ion-input>
+      </ion-item>
+      <ion-button type="submit" expand="full" color="success">Login</ion-button>
+  
+      <p text-center><br>Didn't get any verification code?</p>
+      <ion-button expand="full" color="danger" (click)="resendCode()">Resend verification code</ion-button>
+      <h3 *ngIf="error != null">{{error}}</h3>
+    </form>
+  </ion-content>

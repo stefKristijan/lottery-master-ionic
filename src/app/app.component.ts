@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LotteryService } from './service/lottery.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { AuthenticationService } from './service/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private lotteryService: LotteryService
+    private lotteryService: LotteryService,
+    private _auth : AuthenticationService
   ) {
     this.initializeApp();
   }

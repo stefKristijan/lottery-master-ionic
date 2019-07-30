@@ -22,7 +22,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './purchase/purchase.module#PurchasePageModule'
   },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'verify-user/:email', loadChildren: './verify-user/verify-user.module#VerifyUserPageModule' }
+
 ];
 
 @NgModule({

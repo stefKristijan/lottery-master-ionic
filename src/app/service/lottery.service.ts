@@ -28,7 +28,7 @@ export class LotteryService {
   lotteryDraws(lotteryId: number): Observable<Draw[]> {
     let params = new HttpParams()
       .set("page", "0")
-      .set("size", "200");
+      .set("size", "50");
     return this.http.get<Draw[]>(this.url + "/" + lotteryId + "/draws", { params });
   }
 }
