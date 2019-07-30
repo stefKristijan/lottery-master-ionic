@@ -1,0 +1,57 @@
+#login-logo img {
+    display: block;
+    width: 50%;
+    margin: 1em auto;
+}
+
+form {
+    margin: 5em auto;
+}
+
+ion-item {
+    display: block;
+    width: 50%;
+    border-radius: 0.5em;
+    box-shadow: 0 4px 2px -2px #4aa200;
+    -webkit-box-shadow: 0 4px 2px -2px #4aa200;
+    -moz-box-shadow: 0 4px 2px -2px #4aa200;
+    margin: 3em auto;
+}
+
+ion-input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+}
+
+ion-label#ion-input-0-lbl.sc-ion-label-md-s.md.hydrated, ion-label#ion-input-1-lbl.sc-ion-label-md-s.md.hydrated {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em !important;
+}
+
+form ion-button {
+    display: block;
+    width: 25%;
+    margin: 2em auto;
+}
+
+form ion-button.ion-color {
+    --ion-color-base: #4aa200 !important;
+    --ion-color-base-rgb: rgb(255,255,255) !important;
+    --ion-color-contrast: #fff !important;
+    --ion-color-contrast-rgb: rgb(255,255,255) !important;
+    --ion-color-shade:  #4aa200 !important;
+    --ion-color-tint: #4aa200 !important;
+    --border-radius: 0.5em;
+}
+
+form p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (any-hover: hover) {
+    :host(:hover) ion-button {
+    background: #92c766 !important;
+    color: #fff !important;
+    border-radius: 0.5em;
+    }
+}

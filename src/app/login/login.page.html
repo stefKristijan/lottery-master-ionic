@@ -9,19 +9,22 @@
 </ion-header>
 
 <ion-content>
+  <div id="login-logo">
+      <img src="../../assets/logo.svg" alt="Lottery Master Logo">
+  </div>
   <form *ngIf="!register" (ngSubmit)="authUser()">
     <ion-item>
       <ion-label>E-mail:</ion-label>
-      <ion-input type="text" [(ngModel)]="loginForm.email" name="email"></ion-input>
+      <ion-input [(ngModel)]="loginForm.email" name="email" type="email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Lozinka:</ion-label>
+      <ion-label>Password:</ion-label>
       <ion-input [(ngModel)]="loginForm.password" name="password" type="password"></ion-input>
     </ion-item>
-    <ion-button type="submit" expand="full" color="primary">Login</ion-button>
+    <ion-button type="submit" expand="block" color="primary">Login</ion-button>
 
     <p text-center><br>Don't have an account?</p>
-    <ion-button expand="full" color="danger" (click)="register = true">Register</ion-button>
+    <ion-button expand="block" color="danger" (click)="register = true">Register</ion-button>
     <h3 *ngIf="error != null">{{error}}</h3>
   </form>
 
@@ -38,10 +41,10 @@
       <ion-label>Repeat password:</ion-label>
       <ion-input [(ngModel)]="registerForm.repeatPassword" name="repeatPassword" type="password"></ion-input>
     </ion-item>
-    <ion-button type="submit" expand="full" color="primary">Register</ion-button>
+    <ion-button type="submit" expand="block" color="primary">Register</ion-button>
 
     <p text-center><br>Already have an account?</p>
-    <ion-button expand="full" color="danger" (click)="register = false">Login</ion-button>
+    <ion-button expand="block" color="danger" (click)="register = false">Login</ion-button>
     <h3 *ngIf="error != null">{{error}}</h3>
   </form>
 </ion-content>

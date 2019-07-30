@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   // remoteUrl : 'http://192.168.88.206:8080/',
-  remoteUrl : 'http://192.168.0.13:8080/',
-  // remoteUrl : 'http://localhost:8080/',
+  // remoteUrl : 'http://192.168.0.13:8080/',
+  remoteUrl : 'http://localhost:8080/',
   // remoteUrl: 'http://18.194.88.128:9090/',
-  public_key: ''
+  public_key: 'pk_test_1hnvbSjOAGU2pt3cwJaM22Hw00dxAj284A'
 };
 
 /*
