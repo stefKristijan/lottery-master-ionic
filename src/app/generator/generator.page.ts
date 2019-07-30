@@ -5,6 +5,21 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { StatisticsService } from '../service/statistics.service';
 import { NumberCoefficient } from '../model/number-coefficient';
 import { AuthenticationService } from '../service/authentication.service';
+import { CoefficientStatistics } from '../model/coefficient-statistics';
+import { Generator } from '../model/generator';
+
+export enum GeneratorType {
+  DRAW,
+  DRAW_STATS,
+  FULL
+}
+
+export enum GeneratorSort {
+  SUM,
+  DRAWS,
+  MC,
+  RANGE
+}
 
 @Component({
   selector: 'app-generator',
@@ -13,10 +28,11 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class GeneratorPage implements OnInit {
 
+  generator: Generator;
   user = this._auth.user;
   lotteryId: number;
   lotteryName: string;
-  numberCoefficients = [];
+  coefficients: CoefficientStatistics;
   maxNc: number;
   minNc: number;
   maxMcNc: number;
@@ -43,9 +59,17 @@ export class GeneratorPage implements OnInit {
       (error: HttpErrorResponse) => {
         console.log(error);
       });
-    this.statisticsService.generateNumbers(this.lotteryId).subscribe((nc => {
-      this.findMinAndMaxCoefficients(nc);
-      this.numberCoefficients = nc;
+      this.generator = new Generator();
+      this.generator.mcMultiplier = 1;
+      this.generator.drawnMultiplier = 1;
+      this.generator.rangeMultiplier = 1;
+      this.generator.sort = GeneratorSort.SUM;
+      this.generator.type = GeneratorType.FULL;
+      this.generator.lastDrawDivider = 1;
+    this.statisticsService.generateNumbers(this.lotteryId, this.generator).subscribe((nc => {
+      console.log(nc);
+      // this.findMinAndMaxCoefficients(nc);
+      // this.numberCoefficients = nc;
     }),
       (error: HttpErrorResponse) => {
         console.log(error);

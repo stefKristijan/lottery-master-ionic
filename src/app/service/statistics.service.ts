@@ -7,6 +7,8 @@ import { MostCommon } from '../model/most-common';
 import { MostCommonStatistics } from '../model/most-common-statistics';
 import { NumberCoefficient } from '../model/number-coefficient';
 import { environment } from '../../environments/environment';
+import { CoefficientStatistics } from '../model/coefficient-statistics';
+import { Generator } from '../model/generator';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +62,8 @@ export class StatisticsService {
     return this.http.get<MostCommonStatistics>(this.url + "/" + lotteryId + "/most-common", { params });
   }
 
-  generateNumbers(lotteryId: number): Observable<NumberCoefficient[]> {
-    return this.http.get<NumberCoefficient[]>(this.url + "/" + lotteryId + "/calculate");
+  generateNumbers(lotteryId: number, generator: Generator): Observable<CoefficientStatistics> {
+    console.log("calc");
+    return this.http.post<CoefficientStatistics>(this.url + "/" + lotteryId + "/calculate", generator);
   }
 }

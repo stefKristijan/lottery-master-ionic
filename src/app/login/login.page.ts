@@ -35,7 +35,9 @@ export class LoginPage implements OnInit {
       data => {
         console.log(data);
         this.getApiAuth();
-        this.storage.set(PASSWORD_KEY, this.loginForm.password)
+        localStorage.setItem(PASSWORD_KEY, this.loginForm.password);
+        //TODO - UNCOMMENT FOR MOBILE
+        //this.storage.set(PASSWORD_KEY, this.loginForm.password)
       },
       error => {
         console.log(error);
@@ -68,7 +70,9 @@ export class LoginPage implements OnInit {
   /** Get user infos */
   getApiAuth() {
     this._auth.apiAuth().subscribe(data => {
-      this.storage.set(USER_KEY, JSON.stringify(data));
+      localStorage.setItem(USER_KEY, JSON.stringify(data));
+      //UNCOMMENT FOR MOBILE
+      //this.storage.set(USER_KEY, JSON.stringify(data));
       let id = localStorage.getItem("currentLottery");
       this.router.navigate([id + '/generator']);
     });
