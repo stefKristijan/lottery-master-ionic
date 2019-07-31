@@ -63,15 +63,23 @@ export class GeneratorPage implements OnInit {
   }
 
   generateNumbers(){
+    this.generator.draws = 10;
+    this.generator.maxDraws = 100;
+    this.generator.drawnMultiplier = 1;
+    this.generator.mcMultiplier = 1;
+    this.generator.lastDrawDivider = 1;
+    this.generator.rangeMultiplier = 1;
+    this.generator.sort = GeneratorSort.SUM;
+    this.generator.type = GeneratorType.DRAW_STATS;
   this.statisticsService.generateNumbers(this.lotteryId, this.generator).subscribe((nc => {
     this.coefficients = nc;
+    console.log(nc);
     this.findMinAndMaxCoefficients(nc.coefficients);
   }),
     (error: HttpErrorResponse) => {
       console.log(error);
     });
   }
-
 
   private findMinAndMaxCoefficients(nc: NumberCoefficient[]) {
     this.maxDNc = nc[0].drawnCoefficient;

@@ -63,7 +63,6 @@ export class StatisticsService {
   }
 
   generateNumbers(lotteryId: number, generator: Generator): Observable<CoefficientStatistics> {
-    console.log("calc");
     return this.http.post<CoefficientStatistics>(this.url + "/" + lotteryId + "/calculate", generator);
   }
 }
