@@ -8,49 +8,111 @@
 </ion-header>
 <ion-content>
     <div id="header-img"></div>
-        <ion-grid class="content">
-            <ion-row>
-                <ion-col size="12">
-                    <p (click)="logout()"><ion-icon ios="md-exit" md="md-exit"></ion-icon> Log out</p>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size="12">
-                    <img id="user-img" src="../../assets/user.svg" alt="Lottery Master User Icon">
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <ion-grid>
-            <ion-row>
-                <ion-label>{{user.email}}</ion-label> 
-            </ion-row>
-            <ion-row id="tickets">
-                <ion-col size="12" size-lg="6">
-                    <img src="../../assets/ticket.png" alt="Lottery Master Ticket">
-                </ion-col>
-                <ion-col size="12" size-lg="6">
-                    <ion-label>Tickets left : {{user.generatesLeft}}</ion-label>
-                    <ion-button expand="block" color="danger" size="large" routerLink="/purchase">Purchase</ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <div *ngIf="coefficients != null">
-            <div class="numberCoefficient" *ngFor="let nc of coefficients.coefficients">
-                <img class="ball" src="../../assets/{{nc.number}}.svg" />
-                <label><b>Sum coefficient: </b>{{(nc.coefficientSum - minNc) / (maxNc-minNc) * 100}}%
-                    <ion-progress-bar value="{{(nc.coefficientSum - minNc) / (maxNc-minNc)}}"></ion-progress-bar>
-                </label>
-                <label><b>Range coefficient: </b>{{(nc.rangeCoefficient - minRcNc) / (maxRcNc-minRcNc) * 100}}%
-                    <ion-progress-bar value="{{(nc.rangeCoefficient - minRcNc) / (maxRcNc-minRcNc)}}"></ion-progress-bar>
-                </label>
-                <label><b>Most common coefficient: </b>{{(nc.mcCoefficient - minMcNc) / (maxMcNc-minMcNc) * 100}}%
-                    <ion-progress-bar value="{{(nc.mcCoefficient - minMcNc) / (maxMcNc-minMcNc)}}"></ion-progress-bar>
-                </label>
-                <label><b>Draw coefficient: </b>{{(nc.drawnCoefficient - minDNc) / (maxDNc-minDNc) * 100}}%
-                    <ion-progress-bar value="{{(nc.drawnCoefficient - minDNc) / (maxDNc-minDNc)}}"></ion-progress-bar>
-                </label>
-            </div>
+    <ion-grid class="content">
+        <ion-row>
+            <ion-col size="12">
+                <a (click)="logout()"><ion-icon ios="md-exit" md="md-exit"></ion-icon> Log out</a>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <img id="user-img" src="../../assets/user.svg" alt="Lottery Master User Icon">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-label>{{user.email}}</ion-label>
+        </ion-row>
+        <ion-row id="tickets">
+            <ion-col size="12" size-lg="6">
+                <img src="../../assets/ticket.png" alt="Lottery Master Ticket">
+            </ion-col>
+            <ion-col size="12" size-lg="6">
+                <ion-label>Tickets left : {{user.generatesLeft}}</ion-label>
+                <ion-button expand="block" color="danger" size="large" routerLink="/purchase">Purchase</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div *ngIf="coefficients == null">
+        <form (ngSubmit)="generateNumbers()">
+            <ion-list lines="none">
+            <ion-item>
+                <ion-label>Draw range : </ion-label>
+                <ion-label range-left>10 </ion-label>
+                <ion-range dualKnobs="true" min="10" max="100" pin="true"></ion-range>
+                <ion-label range-right> 100</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Range multiplier : </ion-label>
+                <ion-label range-left>0 </ion-label>
+                <ion-range min="0" max="100" pin="true"></ion-range>
+                <ion-label range-right> 100</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Most common multiplier : </ion-label>
+                <ion-label range-left>0 </ion-label>
+                <ion-range min="0" max="100" pin="true"></ion-range>
+                <ion-label range-right> 100</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Drawn multiplier : </ion-label>
+                <ion-label range-left>0 </ion-label>
+                <ion-range min="0" max="100" pin="true"></ion-range>
+                <ion-label range-right> 100</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Last draw divider : </ion-label>
+                <ion-label range-left>0 </ion-label>
+                <ion-range min="0.1" max="100" pin="true"></ion-range>
+                <ion-label range-right> 100</ion-label>
+            </ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                            <ion-item id="select">
+                                    <ion-select placeholder="Generator type">
+                                        <ion-select-option value="draw">Draw</ion-select-option>
+                                        <ion-select-option value="draw-stats">Draw stats</ion-select-option>
+                                        <ion-select-option value="full">Full</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-item id="select">
+                            <ion-select placeholder="Sort type">
+                                <ion-select-option value="draw">Most common</ion-select-option>
+                                <ion-select-option value="draw-stats">Sum</ion-select-option>
+                                <ion-select-option value="full">Draw</ion-select-option>
+                                <ion-select-option value="full">Range</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+            <ion-button id="generate-btn" type="submit" expand="block" color="primary">Generate</ion-button>
+        </form>
+    </div>
+    <div *ngIf="coefficients != null">
+        <div class="numberCoefficient" *ngFor="let nc of coefficients.coefficients">
+            <img class="ball" src="../../assets/{{nc.number}}.svg" />
+            <label>
+                <b>Sum coefficient: </b>{{(nc.coefficientSum - minNc) / (maxNc-minNc) * 100}}%
+                <ion-progress-bar value="{{(nc.coefficientSum - minNc) / (maxNc-minNc)}}"></ion-progress-bar>
+            </label>
+            <label>
+                <b>Range coefficient: </b>{{(nc.rangeCoefficient - minRcNc) / (maxRcNc-minRcNc) * 100}}%
+                <ion-progress-bar value="{{(nc.rangeCoefficient - minRcNc) / (maxRcNc-minRcNc)}}"></ion-progress-bar>
+            </label>
+            <label>
+                <b>Most common coefficient: </b>{{(nc.mcCoefficient - minMcNc) / (maxMcNc-minMcNc) * 100}}%
+                <ion-progress-bar value="{{(nc.mcCoefficient - minMcNc) / (maxMcNc-minMcNc)}}"></ion-progress-bar>
+            </label>
+            <label>
+                <b>Draw coefficient: </b>{{(nc.drawnCoefficient - minDNc) / (maxDNc-minDNc) * 100}}%
+                <ion-progress-bar value="{{(nc.drawnCoefficient - minDNc) / (maxDNc-minDNc)}}"></ion-progress-bar>
+            </label>
         </div>
+    </div>
 </ion-content>
-   
-

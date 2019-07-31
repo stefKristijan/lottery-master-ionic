@@ -28,7 +28,7 @@ export enum GeneratorSort {
 })
 export class GeneratorPage implements OnInit {
 
-  generator: Generator;
+  generator= new Generator();
   user = this._auth.user;
   lotteryId: number;
   lotteryName: string;
@@ -59,21 +59,17 @@ export class GeneratorPage implements OnInit {
       (error: HttpErrorResponse) => {
         console.log(error);
       });
-      this.generator = new Generator();
-      this.generator.mcMultiplier = 1;
-      this.generator.drawnMultiplier = 1;
-      this.generator.rangeMultiplier = 1;
-      this.generator.sort = GeneratorSort.SUM;
-      this.generator.type = GeneratorType.FULL;
-      this.generator.lastDrawDivider = 1;
-    this.statisticsService.generateNumbers(this.lotteryId, this.generator).subscribe((nc => {
-      console.log(nc);
-      this.coefficients = nc;
-      this.findMinAndMaxCoefficients(nc.coefficients);
-    }),
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      });
+     
+  }
+
+  generateNumbers(){
+  this.statisticsService.generateNumbers(this.lotteryId, this.generator).subscribe((nc => {
+    this.coefficients = nc;
+    this.findMinAndMaxCoefficients(nc.coefficients);
+  }),
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    });
   }
 
 
