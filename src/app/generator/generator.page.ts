@@ -68,8 +68,8 @@ export class GeneratorPage implements OnInit {
       this.generator.lastDrawDivider = 1;
     this.statisticsService.generateNumbers(this.lotteryId, this.generator).subscribe((nc => {
       console.log(nc);
-      // this.findMinAndMaxCoefficients(nc);
-      // this.numberCoefficients = nc;
+      this.coefficients = nc;
+      this.findMinAndMaxCoefficients(nc.coefficients);
     }),
       (error: HttpErrorResponse) => {
         console.log(error);

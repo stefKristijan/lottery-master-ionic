@@ -9,10 +9,14 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
 #refreshBtn{
     position: relative;
     bottom: 5px;
 }
 ion-fab{
     margin-right: 10px;
+}
+* {
+    font-family: 'Montserrat', sans-serif;
 }

@@ -15,64 +15,42 @@
     position: relative;
 }
 
-#home {
-    position: relative;
+ion-col p {
+    font-size: 1.2em;
+    text-align: right;
+    color: #42210B;
+    margin: 1em;
 }
 
-#main-container {
-    padding: 57px 50px;
-    background-color: #fff;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-}
-
-ion-row img {
+ion-row #user-img {
     display: block;
     width: 205px;
     height: 206px;
-    margin: 50px auto 0;
-}
-
-#main-container img {
-    margin: 2% auto;
-    width: 100%;
-}
-
-ion-grid {
-    margin-top: 2em;
-}
-
-.img-row {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-.img-col {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-ion-avatar {
-    width: 25%;
-    height: auto;
-    margin: 1em auto;
+    margin: 60px auto 0;
 }
 
 ion-label {
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 1.2em !important;
-    font-weight: 800;
+    font-size: 1.5em !important;
     text-align: center;
     color: #42210B !important;
-    margin: 2em auto;
+    margin: 0 auto;
 }
 
-#ticket-img {
-    display: block; 
-    width: 25%;
+ion-row#tickets {
+    margin: 5em auto;
+}
+
+ion-row#tickets img {
+    width: 350px;
     height: auto;
-    margin: 1em auto; 
+    display: block;
+    margin: 0 auto;
+}
+
+#tickets ion-label {
+    display: block;
+    text-align: left;
+    margin-top: 20px;
 }
 
 ion-button {
@@ -83,11 +61,11 @@ ion-button {
     --ion-color-danger-shade: #3a1d0a;
     --ion-color-danger-tint: #553723;
     --border-radius: 0.5em;
-    width: 25%;
-    margin: 2em auto;
+    width: 170px;
+    margin-top: 40px;
 }
 
-ion-content img {
+.ball {
     width: 40px;
     display: block;
     margin-bottom: 0; 
@@ -102,4 +80,13 @@ ion-content img {
 ion-progress-bar{
     height: 10px;
     border-radius: 10px;
+}
+
+@media only screen and (max-width: 991px) {
+    #tickets ion-label {
+        text-align: center;
+    }
+    ion-button {
+        margin: 1em auto;
+    }
 }

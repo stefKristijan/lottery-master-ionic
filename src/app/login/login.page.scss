@@ -19,12 +19,10 @@ ion-item {
 }
 
 ion-input {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.2em;
 }
 
 ion-label {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.2em !important;
 }
 
@@ -48,8 +46,4 @@ ion-button {
     --ion-color-danger-shade: #418f00;
     --ion-color-danger-tint: #5cab1a;
     --border-radius: 0.5em;
-}
-
-form p {
-    font-family: 'Montserrat', sans-serif;
 }
