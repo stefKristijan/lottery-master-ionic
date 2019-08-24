@@ -13,11 +13,11 @@
       <img src="../../assets/logo.svg" alt="Lottery Master Logo">
   </div>
   <form *ngIf="!register" (ngSubmit)="authUser()">
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>E-mail:</ion-label>
       <ion-input [(ngModel)]="loginForm.email" name="email" type="email"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item  lines="none">
       <ion-label>Password:</ion-label>
       <ion-input [(ngModel)]="loginForm.password" name="password" type="password"></ion-input>
     </ion-item>
@@ -29,15 +29,15 @@
   </form>
 
   <form *ngIf="register" (ngSubmit)="registerUser()">
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>E-mail:</ion-label>
       <ion-input type="text" [(ngModel)]="registerForm.email" name="email"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>Password:</ion-label>
       <ion-input [(ngModel)]="registerForm.password" name="password" type="password"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-label>Repeat password:</ion-label>
       <ion-input [(ngModel)]="registerForm.repeatPassword" name="repeatPassword" type="password"></ion-input>
     </ion-item>
