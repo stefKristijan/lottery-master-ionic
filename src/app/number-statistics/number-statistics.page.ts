@@ -46,7 +46,7 @@ export class NumberStatisticsPage implements OnInit {
         console.log(error);
       });
 
-    this.lotteryService.lotteryDraws(this.lotteryId).subscribe((draws => {
+    this.lotteryService.lotteryDraws(this.lotteryId, null).subscribe((draws => {
       this.maxDraws = draws.length;
     }),
       (error: HttpErrorResponse) => {

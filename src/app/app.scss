@@ -8,3 +8,18 @@ span{
     font-weight: bold;
     float: right;
 }
+
+.alert-ios .alert-wrapper{
+    max-width: unset !important;
+    width: 100% !important;
+}
+
+.alert-md .alert-wrapper{
+    max-width: unset !important;
+    width: 90% !important;
+}
+
+.alert-wrapper{
+    max-width: unset !important;
+    width: 90% !important;
+}

@@ -6,6 +6,7 @@ import { NumberStatistics } from 'src/app/model/number-statistics';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RangeStatistics } from '../model/range-statistics';
 import { HomePage } from '../home/home.page';
+import { Lottery } from '../model/lottery';
 
 @Component({
   selector: 'app-range-statistics',
@@ -14,8 +15,7 @@ import { HomePage } from '../home/home.page';
 })
 export class RangeStatisticsPage implements OnInit {
 
-  lotteryName: string;
-  lotteryId : number;
+  lottery = new Lottery();
   maxDraws: number;
   rangeStats: RangeStatistics;
   numberStats: NumberStatistics;
@@ -34,29 +34,29 @@ export class RangeStatisticsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.lotteryId = +this.home.router.snapshot.paramMap.get("id");
-    this.lotteryService.lotteryById(this.lotteryId).subscribe((l => {
-      this.lotteryName = l.name;
+    this.lottery.id = +this.home.router.snapshot.paramMap.get("id");
+    this.lotteryService.lotteryById(this.lottery.id).subscribe((l => {
+      this.lottery = l;
     }),
       (error: HttpErrorResponse) => {
         console.log(error);
       });
 
-    this.statisticsService.numberStatistics(this.lotteryId, this.draws).subscribe((stat => {
+    this.statisticsService.numberStatistics(this.lottery.id, this.draws).subscribe((stat => {
       this.numberStats = stat;
     }),
       (error: HttpErrorResponse) => {
         console.log(error);
       });
 
-    this.lotteryService.lotteryDraws(this.lotteryId).subscribe((draws => {
+    this.lotteryService.lotteryDraws(this.lottery.id, null).subscribe((draws => {
       this.maxDraws = draws.length;
     }),
       (error: HttpErrorResponse) => {
         console.log(error);
       });
 
-      this.statisticsService.rangeStatistics(this.lotteryId, this.draws, this.range, this.extraRange).subscribe((rangeStat =>{
+      this.statisticsService.rangeStatistics(this.lottery.id, this.draws, this.range, this.extraRange).subscribe((rangeStat =>{
         this.rangeStats = rangeStat;
       }),
         (error: HttpErrorResponse) => {
@@ -66,16 +66,15 @@ export class RangeStatisticsPage implements OnInit {
 
 
   refreshStats(){
-    this.statisticsService.numberStatistics(this.lotteryId, this.draws).subscribe((stat => {
+    this.statisticsService.numberStatistics(this.lottery.id, this.draws).subscribe((stat => {
       this.numberStats = stat;
     }),
       (error: HttpErrorResponse) => {
         console.log(error);
       });
       this.currentDraws = this.draws;
-      this.statisticsService.rangeStatistics(this.lotteryId, this.draws, this.range, this.extraRange).subscribe((rangeStat =>{
+      this.statisticsService.rangeStatistics(this.lottery.id, this.draws, this.range, this.extraRange).subscribe((rangeStat =>{
         this.rangeStats = rangeStat;
-        console.log(this.rangeStats);
       }),
         (error: HttpErrorResponse) => {
           console.log(error);

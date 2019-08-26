@@ -35,7 +35,7 @@ export class DrawsPage implements OnInit {
       (error: HttpErrorResponse) => {
         console.log(error);
       });
-    this.lotteryService.lotteryDraws(this.lotteryId).subscribe((draws => {
+    this.lotteryService.lotteryDraws(this.lotteryId, 50).subscribe((draws => {
       this.draws = draws
     }),
       (error: HttpErrorResponse) => {

@@ -7,18 +7,19 @@ import { NumberCoefficient } from '../model/number-coefficient';
 import { AuthenticationService } from '../service/authentication.service';
 import { CoefficientStatistics } from '../model/coefficient-statistics';
 import { Generator } from '../model/generator';
+import { Lottery } from '../model/lottery';
 
 export enum GeneratorType {
-  DRAW,
-  DRAW_STATS,
-  FULL
+  DRAW = "Draw",
+  DRAW_STATS = "Draw + statistics",
+  FULL = "Full"
 }
 
 export enum GeneratorSort {
-  SUM,
-  DRAWS,
-  MC,
-  RANGE
+  SUM = "Sum",
+  DRAWS = "Drawn",
+  MC = "Most common",
+  RANGE = "Range"
 }
 
 @Component({
@@ -28,15 +29,15 @@ export enum GeneratorSort {
 })
 export class GeneratorPage implements OnInit {
 
-  generator = new Generator();
+  generator : Generator;
   types = GeneratorType;
   sorts = GeneratorSort;
   user = this._auth.user;
-  lotteryId: number;
-  lotteryName: string;
+  lottery = new Lottery();
+  draws : any;
   coefficients: CoefficientStatistics;
   knobs: {
-    lower: 11;
+    lower: 11,
     upper: 90
   };
 
@@ -50,9 +51,16 @@ export class GeneratorPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.lotteryId = +this.route.snapshot.paramMap.get("id");
-    this.lotteryService.lotteryById(this.lotteryId).subscribe((l => {
-      this.lotteryName = l.name;
+    this.lottery.id = +this.route.snapshot.paramMap.get("id");
+    this.lotteryService.lotteryById(this.lottery.id).subscribe((l => {
+      this.lottery = l;
+      this.lotteryService.lotteryDraws(l.id, null).subscribe(d =>{
+        this.draws = d;
+        this.generator = new Generator(this.draws.length);
+      }),
+      (error : HttpErrorResponse) =>{
+        console.log(error);
+      }
     }),
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -63,7 +71,8 @@ export class GeneratorPage implements OnInit {
   generateNumbers() {
     this.generator.maxDraws = this.knobs.upper;
     this.generator.draws = this.knobs.lower;
-    this.statisticsService.generateNumbers(this.lotteryId, this.generator).subscribe((nc => {
+    this.generator.lastDrawDivider = this.generator.lastDrawDivider * 1.0;
+    this.statisticsService.generateNumbers(this.lottery.id, this.generator).subscribe((nc => {
       this.coefficients = nc;
       this._auth.refreshAuthUser();
     }),

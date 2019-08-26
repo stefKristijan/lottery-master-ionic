@@ -26,10 +26,10 @@ export class CustomerService {
     return this.http.post<User>(this.url + 'generator/buy-tickets', {}, { params });
   }
 
-  savePaymentMethod(paymentMethodId: string): Observable<any> {
+  savePaymentMethod(paymentMethodId: string, ticket: string): Observable<any> {
     let ticketOrder = new TicketOrder();
     ticketOrder.paymentMethodId = paymentMethodId;
-    ticketOrder.ticketItem = "TICKET_1";
+    ticketOrder.ticketItem = ticket;
     console.log(ticketOrder);
     return this.http.post<any>(this.url + 'payment/order-tickets', ticketOrder);
   }

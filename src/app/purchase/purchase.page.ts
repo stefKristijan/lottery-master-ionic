@@ -18,15 +18,17 @@ declare var Stripe: any;
 })
 export class PurchasePage implements OnInit {
 
+  ticket: string;
   elements: any;
   stripe: any;
   card: any;
   name: string;
+  user = this._auth.user;
 
   constructor(
     private customerService: CustomerService,
     private _auth: AuthenticationService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class PurchasePage implements OnInit {
   }
 
   pay() {
+
     // Handle real-time validation errors from the card Element.
     // card.addEventListener('change', function (event) {
     //   var displayError = document.getElementById('card-errors');
@@ -68,20 +71,19 @@ export class PurchasePage implements OnInit {
     this.stripe.createPaymentMethod('card', this.card, {
       billing_details: { name: this.name, email: this._auth.user.email }
       // customer: this._auth.user.id
-    }).then(result =>{
+    }).then(result => {
       if (result.error) {
         console.log(result.error);
         // Show error in payment form
       } else {
-        this.customerService.savePaymentMethod(result.paymentMethod.id).subscribe((result => {
+        this.customerService.savePaymentMethod(result.paymentMethod.id, this.ticket).subscribe((result => {
           this.handleServerResponse(result);
         }),
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        });
+          (error: HttpErrorResponse) => {
+            console.log(error);
+          });
       }
     });
-
   }
 
   handleServerResponse(response) {
@@ -99,9 +101,9 @@ export class PurchasePage implements OnInit {
           this.customerService.confirmCard(result.paymentIntent.id, response.tickets).subscribe((result => {
             console.log("Success");
           }),
-          (error: HttpErrorResponse) => {
-            console.log(error);
-          });
+            (error: HttpErrorResponse) => {
+              console.log(error);
+            });
         }
       });
     } else {

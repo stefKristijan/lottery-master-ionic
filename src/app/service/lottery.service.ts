@@ -25,10 +25,13 @@ export class LotteryService {
     return this.http.get<Lottery[]>(this.url);
   }
 
-  lotteryDraws(lotteryId: number): Observable<Draw[]> {
+  lotteryDraws(lotteryId: number, size: number): Observable<Draw[]> {
+    if(size == null || size == 0){
+      size = 100000;
+    }
     let params = new HttpParams()
       .set("page", "0")
-      .set("size", "50");
+      .set("size", size.toString());
     return this.http.get<Draw[]>(this.url + "/" + lotteryId + "/draws", { params });
   }
 }

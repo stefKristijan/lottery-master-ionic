@@ -5,6 +5,31 @@
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row id="tickets">
+            <ion-col size="6">
+                <img src="../../assets/ticket.png" alt="Lottery Master Ticket">
+            </ion-col>
+            <ion-col size="6">
+                <ion-label>Tickets left : {{user.generatesLeft}}</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item id="select">
+                    <ion-select placeholder="Pick tickets" [(ngModel)] = "ticket">
+                        <ion-select-option value="TICKET_1">1 LotteryMaster Ticket - <b>0.50 €</b></ion-select-option>
+                        <ion-select-option value="TICKET_10">10 LotteryMaster Tickets - <b>4.00 €</b></ion-select-option>
+                        <ion-select-option value="TICKET_20">20 LotteryMaster Tickets - <b>7.00 €</b></ion-select-option>
+                        <ion-select-option value="TICKET_50">50 LotteryMaster Tickets - <b>15.00 €</b></ion-select-option>
+                        <ion-select-option value="TICKET_100">100 LotteryMaster Tickets - <b>25.00 €</b></ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
     <form (ngSubmit)="pay()">
         <ion-item>
           <ion-label>Name:</ion-label>
@@ -13,6 +38,6 @@
         <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
           </div>
-        <button ion-button type="submit" block>Pay</button>
+        <ion-button type="submit" id="purchase-btn" expand="block" color="primary">Generate</ion-button>
         </form>
 </ion-content>

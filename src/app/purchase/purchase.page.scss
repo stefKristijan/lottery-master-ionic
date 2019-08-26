@@ -22,3 +22,15 @@
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+  #purchase-btn {
+    --ion-color-primary: #42210B;
+    --ion-color-primary-rgb: 66,33,11;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: #3a1d0a;
+    --ion-color-primary-tint: #553723;
+    --border-radius: 0.5em;
+    margin: 2em auto;
+    max-width: 50%;
+}
