@@ -1,7 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+            <ion-button (click)="back()">
+                <ion-icon slot="icon-only" name="home"></ion-icon>
+            </ion-button>
         </ion-buttons>
         <ion-title>Number genertor</ion-title>
     </ion-toolbar>
@@ -15,7 +17,8 @@
             </ion-col>
             <ion-col size="6">
                 <a (click)="logout()">
-                    <ion-icon ios="md-exit" md="md-exit"></ion-icon> Log out</a>
+                    <ion-icon ios="md-exit" md="md-exit"></ion-icon> Log out
+                </a>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -35,117 +38,149 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <div *ngIf="coefficients == null">
+    <p style="width:100%; font-size: 1.5em; text-align: center; color:#42210B">{{lottery.name}}</p>
+    <div *ngIf="coefficients == null && draws != null">
         <div class="form">
             <ion-list lines="none">
                 <ion-item>
                     <ion-label>Draw range : </ion-label>
-                    <ion-label range-left>10 </ion-label>
-                    <ion-range dualKnobs="true" min="10" step="1" max="{{draws.length}}" pin="true" [(ngModel)]="knobs"></ion-range>
-                    <ion-label range-right>{{draws.length}}</ion-label>
+                    <ion-label class="range-label" range-left>10 </ion-label>
+                    <ion-range dualKnobs="true" min="10" step="1" max="{{draws.length}}" pin="true"
+                        [(ngModel)]="knobsValues"></ion-range>
+                    <ion-label class="range-label" range-right>{{draws.length}}</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-label>Range multiplier : </ion-label>
-                    <ion-label range-left>0 </ion-label>
-                    <ion-range min="0" max="100" step="1" pin="true" [(ngModel)]="generator.rangeMultiplier"></ion-range>
-                    <ion-label range-right> 100</ion-label>
+                    <ion-label class="range-label" range-left>0 </ion-label>
+                    <ion-range min="0" max="100" step="1" pin="true" [(ngModel)]="generator.rangeMultiplier">
+                    </ion-range>
+                    <ion-label class="range-label" range-right> 100</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-label>Most common multiplier : </ion-label>
-                    <ion-label range-left>0 </ion-label>
+                    <ion-label class="range-label" range-left>0 </ion-label>
                     <ion-range min="0" max="100" step="1" pin="true" [(ngModel)]="generator.mcMultiplier"></ion-range>
-                    <ion-label range-right> 100</ion-label>
+                    <ion-label class="range-label" range-right> 100</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-label>Drawn multiplier : </ion-label>
-                    <ion-label range-left>0 </ion-label>
-                    <ion-range min="0" max="100" step = "1" pin="true" [(ngModel)]="generator.drawnMultiplier"></ion-range>
-                    <ion-label range-right> 100</ion-label>
+                    <ion-label class="range-label" range-left>0 </ion-label>
+                    <ion-range min="0" max="100" step="1" pin="true" [(ngModel)]="generator.drawnMultiplier">
+                    </ion-range>
+                    <ion-label class="range-label" range-right> 100</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-label>Last draw divider : </ion-label>
-                    <ion-label range-left>1 </ion-label>
+                    <ion-label class="range-label" range-left>1 </ion-label>
                     <ion-range min="1" max="10" step="1" pin="true" [(ngModel)]="generator.lastDrawDivider"></ion-range>
-                    <ion-label range-right> 10</ion-label>
+                    <ion-label class="range-label" range-right> 10</ion-label>
                 </ion-item>
                 <ion-grid>
                     <ion-row>
-                        <ion-col size="6">
+                        <ion-col size="12" size-lg="6">
                             <ion-item id="select">
-                                <ion-select placeholder="Generator type" [(ngModel)] = "generator.type">
-                                    <ion-select-option *ngFor="let type of types | keyvalue" [value]="type.key">{{type.value}}</ion-select-option>
+                                <ion-select placeholder="Generator type" [(ngModel)]="generator.type"
+                                    (ionChange)="onTypeChange()">
+                                    <ion-select-option *ngFor="let type of types | keyvalue" [value]="type.key">
+                                        {{type.value}}</ion-select-option>
                                 </ion-select>
                             </ion-item>
                         </ion-col>
-                        <ion-col size="6">
+                        <ion-col size="12" size-lg="6">
                             <ion-item id="select">
-                                <ion-select placeholder="Sort type" [(ngModel)] = "generator.sort">
-                                    <ion-select-option *ngFor="let sort of sorts | keyvalue" [value]="sort.key">{{sort.value}}</ion-select-option>
+                                <ion-select placeholder="Coefficient sort" [(ngModel)]="generator.sort">
+                                    <ion-select-option *ngFor="let sort of sorts | keyvalue" [value]="sort.key">
+                                        {{sort.value}}</ion-select-option>
                                 </ion-select>
                             </ion-item>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-list>
-            <ion-button id="generate-btn" (click) ="generateNumbers()" expand="block" color="primary">Generate</ion-button>
+            <div style="text-align: center">
+                <ion-label id="cost-label">Total cost: <b>{{cost}} x </b></ion-label><img id="cost"
+                    src="../../assets/ticket.png" alt="Lottery Master Ticket" />
+            </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12" size-sm="6">
+                        <ion-button style="min-width:fit-content;" id="generate-btn" (click)="setRandomCoefficients()"
+                            expand="block" color="primary">
+                            Random select
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="12" size-sm="6">
+                        <ion-button id="generate-btn" (click)="generateNumbers()" expand="block" color="primary">
+                            Generate
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </div>
     </div>
-    <div *ngIf='generator.type == "DRAW" && coefficients != null'>
-        <div class="numberCoefficient" *ngFor="let nc of coefficients.coefficients">
+    <ion-button *ngIf="coefficients != null" style="min-width:fit-content;" id="generate-btn"
+        (click)="coefficients = null" expand="block" color="primary">
+        Generate again
+    </ion-button>
+    <div *ngIf='generator != null && generator.type == "DRAW" && coefficients != null' style="text-align: center">
+        <div id="ball-wrapper" *ngFor="let nc of coefficients.coefficients"
+            style="display:inline-block; width: calc(100% / 10)">
             <img class="ball" src="../../assets/{{nc.number}}.svg" />
         </div>
-        <hr style="height : 100px; color: black;">
-        <div class="numberCoefficient" *ngFor="let nc of coefficients.extraCoefficients">
+        <hr style="height : 10px; color: black;">
+        <div *ngFor="let nc of coefficients.extraCoefficients" style="display: inline-block;  width: calc(100% / 10)">
             <img class="ball" src="../../assets/{{nc.number}}.svg" />
         </div>
     </div>
-    <div *ngIf='(generator.type == "DRAW_STATS" || generator.type == "FULL" )&& coefficients != null'>
+
+    <div
+        *ngIf='generator != null && (generator.type == "DRAW_STATS" || generator.type == "FULL" ) && coefficients != null'>
         <hr>
         <ion-grid>
             <ion-row>
                 <ion-col *ngIf="coefficients.coefficients != null && coefficients.coefficients.length > 0">
-                        <h1>Regular numbers : </h1>
-                        <div class="numberCoefficient" *ngFor="let nc of coefficients.coefficients">
-                                <img class="ball" src="../../assets/{{nc.number}}.svg" />
-                                <label>
-                                    <b>Sum coefficient : </b>{{nc.coefficientSum * 100}}%
-                                    <ion-progress-bar value="{{nc.coefficientSum}}"></ion-progress-bar>
-                                </label>
-                                <label>
-                                    <b>Range coefficient : </b>{{nc.rangeCoefficient * 100}}%
-                                    <ion-progress-bar value="{{nc.rangeCoefficient}}"></ion-progress-bar>
-                                </label>
-                                <label>
-                                    <b>Most common coefficient : </b>{{nc.mcCoefficient * 100}}%
-                                    <ion-progress-bar value="{{nc.mcCoefficient}}"></ion-progress-bar>
-                                </label>
-                                <label>
-                                    <b>Draw coefficient : </b>{{nc.drawnCoefficient * 100}}%
-                                    <ion-progress-bar value="{{nc.drawnCoefficient}}"></ion-progress-bar>
-                                </label>
-                            </div>
+                    <h1>Regular numbers : </h1>
+                    <div class="numberCoefficient" *ngFor="let nc of coefficients.coefficients">
+                        <img class="ball" src="../../assets/{{nc.number}}.svg" />
+                        <label>
+                            <b>Sum coefficient : </b>{{nc.coefficientSum * 100}}%
+                            <ion-progress-bar value="{{nc.coefficientSum}}"></ion-progress-bar>
+                        </label>
+                        <label>
+                            <b>Range coefficient : </b>{{nc.rangeCoefficient * 100}}%
+                            <ion-progress-bar value="{{nc.rangeCoefficient}}"></ion-progress-bar>
+                        </label>
+                        <label>
+                            <b>Most common coefficient : </b>{{nc.mcCoefficient * 100}}%
+                            <ion-progress-bar value="{{nc.mcCoefficient}}"></ion-progress-bar>
+                        </label>
+                        <label>
+                            <b>Draw coefficient : </b>{{nc.drawnCoefficient * 100}}%
+                            <ion-progress-bar value="{{nc.drawnCoefficient}}"></ion-progress-bar>
+                        </label>
+                    </div>
                 </ion-col>
                 <ion-col *ngIf="coefficients.extraCoefficients != null && coefficients.extraCoefficients.length > 0">
-                        <h1>Extra numbers : </h1>
-                        <div class="numberCoefficient" *ngFor="let nc of coefficients.extraCoefficients">
-                                <img class="ball" src="../../assets/{{nc.number}}.svg" />
-                                <label>
-                                    <b>Sum coefficient : </b>{{nc.coefficientSum * 100}}%
-                                    <ion-progress-bar value="{{nc.coefficientSum}}"></ion-progress-bar>
-                                </label>
-                                <label>
-                                    <b>Range coefficient : </b>{{nc.rangeCoefficient  * 100}}%
-                                    <ion-progress-bar value="{{nc.rangeCoefficient}}"></ion-progress-bar>
-                                </label>
-                                <label>
-                                    <b>Most common coefficient : </b>{{nc.mcCoefficient  * 100}}%
-                                    <ion-progress-bar value="{{nc.mcCoefficient }}"></ion-progress-bar>
-                                </label>
-                                <label>
-                                    <b>Draw coefficient : </b>{{nc.drawnCoefficient * 100}}%
-                                    <ion-progress-bar value="{{nc.drawnCoefficient}}"></ion-progress-bar>
-                                </label>
-                            </div>
+                    <h1>Extra numbers : </h1>
+                    <div class="numberCoefficient" *ngFor="let nc of coefficients.extraCoefficients">
+                        <img class="ball" src="../../assets/{{nc.number}}.svg" />
+                        <label>
+                            <b>Sum coefficient : </b>{{nc.coefficientSum * 100}}%
+                            <ion-progress-bar value="{{nc.coefficientSum}}"></ion-progress-bar>
+                        </label>
+                        <label>
+                            <b>Range coefficient : </b>{{nc.rangeCoefficient  * 100}}%
+                            <ion-progress-bar value="{{nc.rangeCoefficient}}"></ion-progress-bar>
+                        </label>
+                        <label>
+                            <b>Most common coefficient : </b>{{nc.mcCoefficient  * 100}}%
+                            <ion-progress-bar value="{{nc.mcCoefficient }}"></ion-progress-bar>
+                        </label>
+                        <label>
+                            <b>Draw coefficient : </b>{{nc.drawnCoefficient * 100}}%
+                            <ion-progress-bar value="{{nc.drawnCoefficient}}"></ion-progress-bar>
+                        </label>
+                    </div>
                 </ion-col>
             </ion-row>
         </ion-grid>

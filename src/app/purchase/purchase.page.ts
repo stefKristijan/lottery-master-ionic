@@ -3,7 +3,7 @@ import { CustomerService } from '../service/customer.service';
 import { environment } from '../../environments/environment';
 import { TestObject } from 'protractor/built/driverProviders';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { USER_KEY, AuthenticationService } from '../service/authentication.service';
 import { Storage } from '@ionic/storage';
 import { Location } from '@angular/common';
@@ -18,17 +18,19 @@ declare var Stripe: any;
 })
 export class PurchasePage implements OnInit {
 
-  ticket: string;
+  ticket= "TICKET_1";
   elements: any;
   stripe: any;
   card: any;
   name: string;
   user = this._auth.user;
+  error: string;
+  price= "0.50 €";
 
   constructor(
     private customerService: CustomerService,
     private _auth: AuthenticationService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -50,22 +52,32 @@ export class PurchasePage implements OnInit {
       }
     };
 
+    
     // Create an instance of the card Element.
     this.card = this.elements.create('card', { style: style });
     this.card.mount("#card-element");
   }
 
+  ticketChange(){
+    switch(this.ticket){
+      case "TICKET_1":
+        this.price = "0.50 €";
+        break;
+      case "TICKET_10":
+        this.price = "4.00 €";
+        break;
+      case "TICKET_20":
+        this.price = "7.00 €";
+        break;
+      case "TICKET_50":
+        this.price = "15.00 €";
+        break;
+      default:
+        this.price = "25.00 €";
+    }
+  }
+  
   pay() {
-
-    // Handle real-time validation errors from the card Element.
-    // card.addEventListener('change', function (event) {
-    //   var displayError = document.getElementById('card-errors');
-    //   if (event.error) {
-    //     displayError.textContent = event.error.message;
-    //   } else {
-    //     displayError.textContent = '';
-    //   }
-    // });
 
     // Handle form submission.
     this.stripe.createPaymentMethod('card', this.card, {
@@ -73,14 +85,14 @@ export class PurchasePage implements OnInit {
       // customer: this._auth.user.id
     }).then(result => {
       if (result.error) {
-        console.log(result.error);
+        this.error = result.error.message;
         // Show error in payment form
       } else {
         this.customerService.savePaymentMethod(result.paymentMethod.id, this.ticket).subscribe((result => {
           this.handleServerResponse(result);
         }),
           (error: HttpErrorResponse) => {
-            console.log(error);
+            this.error = result.error; console.log(error);
           });
       }
     });
@@ -96,13 +108,13 @@ export class PurchasePage implements OnInit {
         response.payment_intent_client_secret
       ).then(result => {
         if (result.error) {
-          // Show error in payment form
+          this.error = result.error.message;
         } else {
           this.customerService.confirmCard(result.paymentIntent.id, response.tickets).subscribe((result => {
             console.log("Success");
           }),
             (error: HttpErrorResponse) => {
-              console.log(error);
+              this.error = result.error;
             });
         }
       });
@@ -111,6 +123,11 @@ export class PurchasePage implements OnInit {
       let id = localStorage.getItem("currentLottery");
       this.router.navigate([id + '/generator']);
     }
+  }
+
+  back(){
+    let id = localStorage.getItem("currentLottery");
+    this.router.navigate([id + '/generator']);
   }
 }
 

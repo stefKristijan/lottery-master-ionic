@@ -33,15 +33,13 @@ export class LoginPage implements OnInit {
   public authUser() {
     this._auth.login(this.loginForm).subscribe(
       data => {
-        console.log(data);
         this.getApiAuth();
         localStorage.setItem(PASSWORD_KEY, this.loginForm.password);
         //TODO - UNCOMMENT FOR MOBILE
         //this.storage.set(PASSWORD_KEY, this.loginForm.password)
       },
       error => {
-        console.log(error);
-        this.error = error;
+        this.error = error.error.replace("Customer", "Account");;
       }
     );
   }
@@ -55,13 +53,14 @@ export class LoginPage implements OnInit {
       user.password = this.registerForm.password;
       this.customerService.registerUser(user).subscribe(
         data => {
-          console.log("Account successfully created");
           this.router.navigate(['verify-user/' + user.email]);
           this.register = false;
         },
         error => {
-          console.log(error);
-          this.error = error;
+          if (error.error.message == null)
+            this.error = "Invalid data was sent, please use an existing e-mail address for registration";
+          else
+            this.error = error.error.message;
         }
       );
     }
@@ -78,4 +77,8 @@ export class LoginPage implements OnInit {
     });
   }
 
+  back() {
+    let id = localStorage.getItem("currentLottery");
+    this.router.navigate(['/home/' + id + '/tabs/draws']);
+  }
 }

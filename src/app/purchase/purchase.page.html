@@ -1,43 +1,70 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>purchase</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="back()">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Purchase tickets</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-grid>
-        <ion-row id="tickets">
+    <div id="header-img"></div>
+    <ion-grid class="content">
+        <ion-row>
             <ion-col size="6">
-                <img src="../../assets/ticket.png" alt="Lottery Master Ticket">
+                <ion-label id="user">{{user.email}}</ion-label>
             </ion-col>
-            <ion-col size="6">
-                <ion-label>Tickets left : {{user.generatesLeft}}</ion-label>
+            <ion-col id="ticket-select-col" size="6">
+                <ion-label id="ticket-label">Tickets left : <b>{{user.generatesLeft}}</b></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <img id="user-img" src="../../assets/user.svg" alt="Lottery Master User Icon">
             </ion-col>
         </ion-row>
     </ion-grid>
     <ion-grid>
         <ion-row>
-            <ion-col size="12">
+            <ion-col size="12" size-lg="2" style="text-align: center;">
+                <img src="../../assets/ticket.png" alt="Lottery Master Ticket" style="max-width:150px; text-align: center;">
+            </ion-col>
+            <ion-col size="12" size-lg="10">
                 <ion-item id="select">
-                    <ion-select placeholder="Pick tickets" [(ngModel)] = "ticket">
+                    <ion-select placeholder="Pick tickets" [(ngModel)]="ticket" (ionChange)="ticketChange()">
                         <ion-select-option value="TICKET_1">1 LotteryMaster Ticket - <b>0.50 €</b></ion-select-option>
-                        <ion-select-option value="TICKET_10">10 LotteryMaster Tickets - <b>4.00 €</b></ion-select-option>
-                        <ion-select-option value="TICKET_20">20 LotteryMaster Tickets - <b>7.00 €</b></ion-select-option>
-                        <ion-select-option value="TICKET_50">50 LotteryMaster Tickets - <b>15.00 €</b></ion-select-option>
-                        <ion-select-option value="TICKET_100">100 LotteryMaster Tickets - <b>25.00 €</b></ion-select-option>
+                        <ion-select-option value="TICKET_10">10 LotteryMaster Tickets - <b>4.00 €</b>
+                        </ion-select-option>
+                        <ion-select-option value="TICKET_20">20 LotteryMaster Tickets - <b>7.00 €</b>
+                        </ion-select-option>
+                        <ion-select-option value="TICKET_50">50 LotteryMaster Tickets - <b>15.00 €</b>
+                        </ion-select-option>
+                        <ion-select-option value="TICKET_100">100 LotteryMaster Tickets - <b>25.00 €</b>
+                        </ion-select-option>
                     </ion-select>
                 </ion-item>
             </ion-col>
         </ion-row>
     </ion-grid>
     <form (ngSubmit)="pay()">
-        <ion-item>
-          <ion-label>Name:</ion-label>
-          <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
-        </ion-item>
-        <div id="card-element">
-            <!-- A Stripe Element will be inserted here. -->
-          </div>
-        <ion-button type="submit" id="purchase-btn" expand="block" color="primary">Generate</ion-button>
-        </form>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12" size-lg="6">
+                    <div class="cardholder">
+                        <input type="text" [(ngModel)]="name" name="name" placeholder="Cardholder name" />
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="6">
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <p *ngIf="error != null" style="color: red; text-align:center; width:100%">{{error}}</p>
+        <ion-button type="submit" id="purchase-btn" expand="block" color="primary">Buy tickets <div class="vl"></div>
+            <b>{{price}}</b></ion-button>
+    </form>
 </ion-content>

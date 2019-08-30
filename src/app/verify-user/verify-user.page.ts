@@ -29,7 +29,7 @@ export class VerifyUserPage implements OnInit {
         this.router.navigate(['login']);
       },
       error =>{
-        this.error = error.message;
+        this.error = error.error.message;
       }
     );
   }
@@ -38,7 +38,7 @@ export class VerifyUserPage implements OnInit {
     this.customerService.resendCode(this.route.snapshot.paramMap.get('email')).subscribe(
       () => {
       }, error =>{
-        this.error = error;
+        this.error = error.error.message;
       }
     )
   }

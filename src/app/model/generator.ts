@@ -9,15 +9,15 @@ export class Generator{
     drawnMultiplier: number;
     lastDrawDivider: number;
     range: number;
-    type: GeneratorType;
-    sort: GeneratorSort;
+    type: string;
+    sort: string;
 
     constructor(maxDraws: number){
         this.draws = 20;
         this.maxDraws = maxDraws;
         this.range = 10;
-        this.type = GeneratorType.DRAW;
-        this.sort = GeneratorSort.SUM;
+        this.type = "DRAW";
+        this.sort = "SUM";
         this.rangeMultiplier = 1;
         this.mcMultiplier = 1;
         this.drawnMultiplier = 1;

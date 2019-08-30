@@ -23,7 +23,9 @@ const routes: Routes = [
     loadChildren: './purchase/purchase.module#PurchasePageModule'
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'verify-user/:email', loadChildren: './verify-user/verify-user.module#VerifyUserPageModule' }
+  { path: 'verify-user/:email', loadChildren: './verify-user/verify-user.module#VerifyUserPageModule' },
+  { path: 'verify-email/:email/:code', loadChildren: './verification/verification.module#VerificationPageModule' }
+
 
 ];
 

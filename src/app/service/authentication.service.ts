@@ -106,6 +106,7 @@ export class AuthenticationService {
   public refreshAuthUser() {
     this.apiAuth().subscribe(data => {
       localStorage.setItem(USER_KEY, JSON.stringify(data));
+      this.loggedUser.getValue().generatesLeft = data.generatesLeft;
       //UNCOMMENT FOR MOBILE!!!
       //this.storage.set(USER_KEY, JSON.stringify(data));
     });

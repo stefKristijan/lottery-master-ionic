@@ -84,26 +84,33 @@ ion-button {
     margin: 1em auto;
 }
 
-.form {
-    padding: 2em;
-}
-
 .form ion-item ion-label {
     font-size: 1.2em !important;
     color: #ad8348 !important;
+    margin-top : 1em;
 }
 
+.range-label{
+    max-width: 50px;
+    font-size: 1em;
+}
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+    overflow: unset !important;
+}
 ion-range {
     --bar-background: #42210b4d;
     --bar-background-active: #42210b;
     --knob-background: #42210b;
     --pin-background: #42210b;
+    max-width: 50% !important;;
 }
 
 ion-select  {
-    margin: 2em auto;
     color: #42210B !important;
     opacity: 0.8 !important;
+    min-width: 90%;
+    width: 90%;
+    text-align: center;
 }
 
 #generate-btn {
@@ -145,6 +152,20 @@ ion-progress-bar {
     border-radius: 0.5em;
     --progress-background: #ad8348;
     --buffer-background: #ad834883;
+}
+
+#cost{
+    vertical-align: middle;
+    width: 100px;
+    display: inline-block;
+}
+
+#cost-label {
+    margin-right: 10px;
+    font-size: 1.2em;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 @media only screen and (max-width: 991px) {

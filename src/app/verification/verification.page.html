@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Verification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="login-logo">
+    <img src="../../assets/logo.svg" alt="Lottery Master Logo">
+  </div>
+  <div *ngIf="error == null">
+    <h2>Thank you for registering to LotteryMaster!</h2>
+    <p>Good luck in winning lotteries!</p>
+  </div>
+  <p *ngIf="error != null" style="color: red; text-align:center; width:100%">{{error}}</p>
+</ion-content>
