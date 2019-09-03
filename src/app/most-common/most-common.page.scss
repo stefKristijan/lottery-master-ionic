@@ -1,20 +1,30 @@
 ion-grid{
     width: 100%;
     height: auto;
-    overflow-x: scroll;
   }
 
-  ion-row{
-    width: 100%;
-    height: fit-content;
+  .col.left{
+      width: 70%;
+      img{
+        width: 60px;
+        display: inline-block;
+        margin: 0;
+        }
   }
 
-  .col{
-      width: 50%;
+  .col.right {
+    width: 30%;
+    float: right;
+    img{
+      width: 60px;
+      display: inline-block;
+      margin: 0;
+      }
   }
 
   .mostCommonDiv{
       margin: 5px auto;
+      text-align: center;
   }
 
   .imgDiv{
@@ -41,7 +51,7 @@ ion-grid{
     margin: 0 auto;
     padding: 2px 10px;
     background-color: rgba(58, 65, 57, 0.7);
-    font-size: 12px;
+    font-size: 0.8em;
     text-align: center;
     color: white;
     z-index: 10;
@@ -56,17 +66,13 @@ ion-grid{
     padding: 2px 10px;
     bottom: 7px;
     background-color: rgba(58, 65, 57, 0.7);
-    font-size: 12px;
+    font-size: 0.8em;
     text-align: center;
     color: white;
     z-index: 10;
  }
 
-  img{
-    width: 40px;
-    display: inline-block;
-    margin: 0;
-    }
+  
 
 .last {
     margin-left: 5px;
@@ -93,21 +99,47 @@ ion-grid{
 }
 
 @media only screen and (max-width: 450px) {
-    .rangeDiv {
-      display: inline-block;
-      height: 100px;
-      bottom:25px;
-      position: relative;
-    }
-
-    .rangeLabel{
-        position: relative;
-        text-align: center;
-    }
-
-    ion-row{
-        width: max-content;
-        height: fit-content;
-        margin: 0 auto;
+    .col.left {
+      display: block;
+      width: 100%;
+      img{
+        width: 50px;
       }
+    }
+    .col.right{
+      display: block;
+      width: 100%;
+      img{
+        width: 50px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .drawnDiv {
+      font-size: 1em;
+    }
+    .drawnPercDiv{
+     font-size: 1em;
+    }
+    .groupTitle{
+      font-size: 1.2em
+    }
+  }
+
+  ion-button{
+    --ion-color-primary: #42210B;
+      --ion-color-primary-rgb: 66,33,11;
+      --ion-color-primary-contrast: #ffffff;
+      --ion-color-primary-contrast-rgb: 255,255,255;
+      --ion-color-primary-shade: #3a1d0a;
+      --ion-color-primary-tint: #553723;
+      --ion-color-danger: #42210B;
+      --ion-color-danger-rgb: 66,33,11;
+      --ion-color-danger-contrast: #ffffff;
+      --ion-color-danger-contrast-rgb: 255,255,255;
+      --ion-color-danger-shade: #3a1d0a;
+      --ion-color-danger-tint: #553723;
+      --border-radius: 0.5em;
+      width:100%;
   }

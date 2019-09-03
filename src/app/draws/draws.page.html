@@ -8,20 +8,46 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content>
-    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
-        <ion-fab-button size="small" color="danger" routerLink="/{{lotteryId}}/generator">
-          <ion-icon name="flash"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+    <ion-fab-button size="small" color="primary" routerLink="/{{lotteryId}}/generator">
+      <ion-icon name="flash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-grid>
-    <ion-row *ngFor="let draw of draws" flex-wrap="nowrap" align-items="stretch">
-      <label>{{draw.time | date:"medium"}}</label>
-      <img class="ball" *ngFor="let num of draw.numbers" src="../../assets/{{num}}.svg" />
-      <div class="last" *ngIf="draw.extraNumbers.length > 0">
-        <img *ngFor="let extraNum of draw.extraNumbers" src="../../assets/{{extraNum}}.svg" />
-      </div>
+    <ion-row>
+      <ion-col size="12" size-sm="8" size-md="10">
+          <ion-item id="range">
+              <p style="margin-top: 30px; font-size: 0.8em;">Number of draws:</p>
+              <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="currentDraws">
+                <ion-label slot="start">2</ion-label>
+                <ion-label slot="end">{{maxDraws}}</ion-label>
+              </ion-range>
+            </ion-item>
+      </ion-col>
+      <ion-col size = "12" size-sm="4" size-md="2" style="text-align: center;">
+          <ion-button style="width:100%" (click)="refresh()">
+              Refresh
+          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+  <ion-grid>
+    <ion-row *ngFor="let draw of draws">
+      <ion-col size="3" size-sm="2" size-lg="1" style="margin: auto 0;">
+        <div class="date-wrapper">
+          <p>{{draw.time | date:"MM/dd/yyyy"}}<br></p>
+          <p>{{draw.time | date:"HH:mm"}}</p>
+        </div>
+      </ion-col>
+      <ion-col size="9" size-sm="10" size-lg="11" style="text-align: center;">
+        <img class="ball" *ngFor="let num of draw.numbers" src="../../assets/{{num}}.svg" />
+        <div class="last" *ngIf="draw.extraNumbers.length > 0">
+          <img *ngFor="let extraNum of draw.extraNumbers" src="../../assets/{{extraNum}}.svg" />
+        </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

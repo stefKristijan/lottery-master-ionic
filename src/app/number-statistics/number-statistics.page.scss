@@ -1,6 +1,7 @@
 .numStat{
-    margin-right: 2px;
     padding: 0;
+    width:calc(100% / 20);
+    text-align: center;
 }
 
 .drawn {
@@ -11,7 +12,7 @@
     width:30px;
     margin: 0 auto;
     background-color: rgba(29, 131, 9, 0.7);
-    font-size: 10px;
+    font-size: 0.9em;
     text-align: center;
     color: white;
  }
@@ -24,13 +25,12 @@
     bottom: 5px;
     margin: 0 auto;
     background-color: rgba(141, 12, 12, 0.7);
-    font-size: 10px;
+    font-size: 0.9em;
     text-align: center;
     color: white;
  }
 
  img{
-     width: 40px;
      display: block;
      margin-bottom: 0;
  }
@@ -54,3 +54,45 @@
  #refreshBtn{
      margin-top: 5px;
  }
+
+ @media only screen and (max-width: 768px) {
+    .numStat {
+      /* max-width: 100%; */
+      width: calc(100% / 10);
+    }
+    #range{
+      display:block;
+    }
+  }
+  
+  ion-button{
+    --ion-color-primary: #42210B;
+      --ion-color-primary-rgb: 66,33,11;
+      --ion-color-primary-contrast: #ffffff;
+      --ion-color-primary-contrast-rgb: 255,255,255;
+      --ion-color-primary-shade: #3a1d0a;
+      --ion-color-primary-tint: #553723;
+      --ion-color-danger: #42210B;
+      --ion-color-danger-rgb: 66,33,11;
+      --ion-color-danger-contrast: #ffffff;
+      --ion-color-danger-contrast-rgb: 255,255,255;
+      --ion-color-danger-shade: #3a1d0a;
+      --ion-color-danger-tint: #553723;
+      --border-radius: 0.5em;
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .drawn {
+      font-size: 0.7em;
+    }
+
+    .notDrawn{
+        font-size: 0.7em;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) {
+    ion-button {
+      margin-top: 30px;
+    }
+  }

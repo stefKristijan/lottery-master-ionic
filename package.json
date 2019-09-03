@@ -33,6 +33,7 @@
     "@ionic/storage": "^2.2.0",
     "@types/stripe": "^6.31.11",
     "cordova-android": "^7.1.4",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-ionic-webview": "^4.1.1",
     "cordova-plugin-stripe": "^1.5.3",
     "cordova-sqlite-storage": "^3.2.1",
@@ -90,7 +91,8 @@
       }
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

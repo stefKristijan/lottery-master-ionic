@@ -3,7 +3,7 @@
     <ion-menu type="overlay">
       <ion-header>
         <ion-toolbar>
-          <ion-title>Lutrije</ion-title>
+          <img src="../../assets/logo.svg" alt="Lottery Master Logo">
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -13,10 +13,12 @@
           </ion-item>
           <ion-menu-toggle auto-hide="false" *ngFor="let lottery of lotteries">
             <ion-item routerLink="/home/{{lottery.id}}">
-              <ion-label>
+              <ion-label id="name">
                 {{lottery.name}}
-                <span>{{lottery.draw}}/{{lottery.maxNumber}}</span>
               </ion-label>
+              <p style=" display: inline;
+              font-size: 0.9em !important;
+              color: #42210B !important;">{{lottery.draw}}</p><div id="vl"></div><p>{{lottery.maxNumber}}</p>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

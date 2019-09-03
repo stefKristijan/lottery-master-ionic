@@ -1,48 +1,73 @@
-label{
-    display:block;
-    width: 100%;
-    color: black;
-    font-weight: bold;
-    font-size: 12px;
-  }
-  
-  .last {
-    margin-left: 5px;
-    padding-left: 5px;
-    border-left: 1px solid gainsboro;
-    display: inline-block;
-  }
-  
-  ion-grid{
-    width: 100%;
-    height: auto;
-    overflow-x: scroll;
-  }
-  
-  ion-row{
-    width: max-content;
-    height: fit-content;
-    margin-bottom: 5px;
-  
-    .label{
-      float: left;
-    }
-  }
-    
-  img{
-    width: 40px;
-    display: inline-block;
-    margin: 0;
-    }
-
-.ballNum{
-  position: relative;
-  width:30px;
-  bottom: 30px;
-  margin: 0 auto;
-  font-size: 16px;
-  text-align: center;
-  color: black;
+label {
+  display: block;
+  width: 100%;
+  color: #42210b;
   font-weight: bold;
+  font-size: 12px;
 }
-  
+
+.last {
+  border-top: 1px solid gainsboro;
+  display: block;
+}
+
+ion-grid {
+  width: 100%;
+  height: auto;
+}
+
+ion-row {
+  border-bottom: 1px solid #42210b;
+}
+
+img {
+  /* max-width: 100%; */
+  border: 0;
+  width: calc(100% / 20);
+}
+.date-wrapper {
+  min-height: 100%;
+  text-align: center;
+  margin: auto 5px;
+  height: fit-content;
+  font-size: 0.8em;
+}
+
+@media only screen and (max-width: 768px) {
+  img {
+    /* max-width: 100%; */
+    border: 0;
+    width: calc(100% / 10);
+  }
+  #range{
+    display:block;
+  }
+}
+
+ion-button{
+  --ion-color-primary: #42210B;
+    --ion-color-primary-rgb: 66,33,11;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: #3a1d0a;
+    --ion-color-primary-tint: #553723;
+    --ion-color-danger: #42210B;
+    --ion-color-danger-rgb: 66,33,11;
+    --ion-color-danger-contrast: #ffffff;
+    --ion-color-danger-contrast-rgb: 255,255,255;
+    --ion-color-danger-shade: #3a1d0a;
+    --ion-color-danger-tint: #553723;
+    --border-radius: 0.5em;
+}
+
+@media only screen and (max-width: 500px) {
+  .date-wrapper {
+    font-size: 0.7em;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  ion-button {
+    margin-top: 30px;
+  }
+}

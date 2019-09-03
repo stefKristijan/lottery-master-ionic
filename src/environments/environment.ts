@@ -6,9 +6,9 @@ export const environment = {
   production: false,
   // remoteUrl : 'http://192.168.88.206:8080/',
   // remoteUrl : 'http://192.168.0.13:8080/',
-  remoteUrl : 'http://35.180.42.49:8080/',
+  remoteUrl : 'http://52.47.184.20:80/',
   // remoteUrl: 'http://18.194.88.128:9090/',
-  public_key: ''
+  public_key: 'pk_live_nLkMaL9EBk2DVXdmlQhpX6Ll00MiUbUEMh'
 };
 
 /*

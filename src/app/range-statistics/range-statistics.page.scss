@@ -5,6 +5,23 @@
     width: max-content;
 }
 
+ion-button{
+    --ion-color-primary: #42210B;
+      --ion-color-primary-rgb: 66,33,11;
+      --ion-color-primary-contrast: #ffffff;
+      --ion-color-primary-contrast-rgb: 255,255,255;
+      --ion-color-primary-shade: #3a1d0a;
+      --ion-color-primary-tint: #553723;
+      --ion-color-danger: #42210B;
+      --ion-color-danger-rgb: 66,33,11;
+      --ion-color-danger-contrast: #ffffff;
+      --ion-color-danger-contrast-rgb: 255,255,255;
+      --ion-color-danger-shade: #3a1d0a;
+      --ion-color-danger-tint: #553723;
+      --border-radius: 0.5em;
+      width:100%;
+  }
+
 p{
     display: inline;
     position: relative;
@@ -21,7 +38,7 @@ p{
      bottom: 10px;
     margin: 0 auto;
     background-color: rgba(141, 12, 12, 0.7);
-    font-size: 10px;
+    font-size: 0.8em;
     text-align: center;
     color: white;
  }
@@ -32,13 +49,13 @@ p{
 
  .rangeLabel{
      overflow: visible;
-     font-size: 12px;
+     font-size: 0.8em;
      margin-top: 40px;
  }
 
  .rangeLabelDraws{
      overflow: visible;
-     font-size: 12px;
+     font-size: 0.8em;
      margin-top: 30px;
  }
 
@@ -64,7 +81,7 @@ ion-grid{
  }
  
  .ball{
-     width: 40px;
+     width: 50px;
  }
 
  .numberStatWrapper{
@@ -90,6 +107,10 @@ ion-grid{
       height: 100px;
       bottom:25px;
       position: relative;
+    }
+
+    .stat{
+        font-size: 0.7em;
     }
 
     .rangeLabel{

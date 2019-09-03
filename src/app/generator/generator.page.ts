@@ -72,8 +72,8 @@ export class GeneratorPage implements OnInit {
     this.generator.draws = this.knobsValues.lower;
     this.generator.lastDrawDivider = this.generator.lastDrawDivider;
     var btn = document.getElementById("generate-btn");
-    console.log(btn[0]);
-    console.log(btn[1]);
+    // console.log(btn[0]);
+    // console.log(btn[1]);
     this.statisticsService.generateNumbers(this.lottery.id, this.generator).subscribe((nc => {
       this.coefficients = nc;
       this._auth.apiAuth().subscribe(u =>{

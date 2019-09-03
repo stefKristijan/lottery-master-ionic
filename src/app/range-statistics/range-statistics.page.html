@@ -11,12 +11,12 @@
 
 <ion-content *ngIf="rangeStats != null && rangeStats.stats.length > 0 && numberStats != null && numberStats.stats.length > 0">
     <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
-        <ion-fab-button size="small" color="danger" routerLink="/{{lottery.id}}/generator">
+        <ion-fab-button size="small" color="primary" routerLink="/{{lottery.id}}/generator">
           <ion-icon name="flash"></ion-icon>
         </ion-fab-button>
       </ion-fab>
   <ion-item>
-    <ion-label class="rangeLabelDraws">Broj izvlačenja:</ion-label>
+    <ion-label class="rangeLabelDraws">Number of draws:</ion-label>
     <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
       <ion-label slot="start">2</ion-label>
       <ion-label slot="end">{{maxDraws}}</ion-label>
@@ -24,29 +24,24 @@
   </ion-item>
   <ion-item>
     <div class="rangeDiv">
-      <ion-label class="rangeLabel">Interval brojeva:</ion-label>
+      <ion-label class="rangeLabel">Number interval:</ion-label>
       <ion-range min="2" max="10" step="1" ticks="true" snaps="true" pin="true" [(ngModel)]="range">
         <ion-label slot="start">2</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </div>
-    <div class="rangeDiv">
-      <ion-label class="rangeLabel">Interval dopunskih:</ion-label>
+    <div *ngIf="lottery.extraDraw != null" class="rangeDiv">
+      <ion-label class="rangeLabel">Extra number interval:</ion-label>
       <ion-range min="2" max="10" step="1" ticks="true" snaps="true" pin="true" [(ngModel)]="extraRange">
         <ion-label slot="start">2</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </div>
   </ion-item>
-    <ion-button id="refreshBtn" expand="full" size="small" (click)="refreshStats()">
-      Osvježi
+    <ion-button id="refreshBtn" (click)="refreshStats()">
+      Refresh
     </ion-button>
   <ion-grid>
-    <ion-row class="groupTitle" flex-wrap="nowrap" align-items="stretch">
-      <ion-item>
-        <ion-label>Statistika intervala brojeva</ion-label>
-      </ion-item>
-    </ion-row>
     <ion-row flex-wrap="nowrap" align-items="stretch">
       <ion-col *ngFor="let num of rangeStats.stats">
         <div class="ballsRangeDiv">
@@ -66,7 +61,7 @@
     <ion-row class="groupTitle" *ngIf="rangeStats.extraStats != null && rangeStats.extraStats.length > 0" flex-wrap="nowrap"
       align-items="stretch">
       <ion-item>
-        <ion-label>Statistika intervala dopunskih brojeva</ion-label>
+        <ion-label>Extra number interval statistics</ion-label>
       </ion-item>
     </ion-row>
     <ion-row *ngIf="rangeStats.extraStats != null && rangeStats.extraStats.length > 0" flex-wrap="nowrap" align-items="stretch">

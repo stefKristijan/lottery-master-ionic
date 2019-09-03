@@ -23,3 +23,26 @@ span{
     max-width: unset !important;
     width: 90% !important;
 }
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#vl {
+    padding-left: 5px;
+    margin-left: 5px;
+    border-left: 1px solid #42210B;
+    height: 50%;
+    display: inline;
+  }
+
+  #name{
+      font-size: 1em !important;
+      color: #42210B !important;
+  }
+
+  ion-range {
+    --bar-background: #42210b4d;
+    --bar-background-active: #42210b;
+    --knob-background: #42210b;
+    --pin-background: #42210b;
+}

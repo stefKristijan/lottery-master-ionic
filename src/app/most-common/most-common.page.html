@@ -4,19 +4,19 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      {{lotteryName}}
+      {{lottery.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="mostCommonStatistics != null">
     <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
-        <ion-fab-button size="small" color="danger" routerLink="/{{lotteryId}}/generator">
+        <ion-fab-button size="small" color="primary" routerLink="/{{lottery.id}}/generator">
           <ion-icon name="flash"></ion-icon>
         </ion-fab-button>
       </ion-fab>
   <ion-item>
-    <ion-label class="rangeLabelDraws">Broj izvlačenja:</ion-label>
+    <ion-label class="rangeLabelDraws">Number of draws:</ion-label>
     <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
       <ion-label slot="start">2</ion-label>
       <ion-label slot="end">{{maxDraws}}</ion-label>
@@ -24,48 +24,44 @@
   </ion-item>
   <ion-item>
     <div class="rangeDiv">
-      <ion-label class="rangeLabel">Količina brojeva:</ion-label>
+      <ion-label class="rangeLabel">Numbers:</ion-label>
       <ion-range min="2" max="{{maxQuantity}}" step="1" pin="true" snaps="true" pin="true" [(ngModel)]="quantity">
         <ion-label slot="start">2</ion-label>
         <ion-label slot="end">{{maxQuantity}}</ion-label>
       </ion-range>
     </div>
-    <div class="rangeDiv">
-      <ion-label class="rangeLabel">Količina dopunskih:</ion-label>
+    <div *ngIf="lottery.extraDraw != null && lottery.extraDraw > 1" class="rangeDiv">
+      <ion-label class="rangeLabel">Extra numbers:</ion-label>
       <ion-range min="2" max="{{maxExtraQuantity}}" step="1" snaps="true" pin="true"y pin="true" [(ngModel)]="extraQuantity">
         <ion-label slot="start">2</ion-label>
         <ion-label slot="end">{{maxExtraQuantity}}</ion-label>
       </ion-range>
     </div>
   </ion-item>
-  <ion-button id="refreshBtn" expand="full" size="small" (click)="refreshStats()">
-    Osvježi
+  <ion-button expand="full" (click)="refreshStats()">
+    Refresh
   </ion-button>
 
 
   <ion-grid>
     <ion-row>
-      <div class="col" *ngIf="mostCommonStatistics.mostCommonStats != null && mostCommonStatistics.mostCommonStats.length > 0">
+      <div class="col left" *ngIf="mostCommonStatistics.mostCommonStats != null && mostCommonStatistics.mostCommonStats.length > 0">
         <ion-item class="groupTitle">
-          <ion-label>Regularni brojevi</ion-label>
+          <ion-label>Regular numbers</ion-label>
         </ion-item>
         <div class="mostCommonDiv" *ngFor="let mostCommonStat of mostCommonStatistics.mostCommonStats">
           <div class="drawnDiv">{{mostCommonStat.drawn}}</div>
-          <div class="imgDiv">
             <img class="ball" *ngFor="let num of mostCommonStat.numbers" src="../../assets/{{num}}.svg" />
-          </div>
           <div class="drawnPercDiv">{{mostCommonStat.drawn/currentDraws * 100 | number : '1.0-2'}}%</div>
         </div>
       </div>
-      <div class="col" *ngIf="mostCommonStatistics.extraMostCommons != null && mostCommonStatistics.extraMostCommons.length > 0">
+      <div class="col right" *ngIf="mostCommonStatistics.extraMostCommons != null && mostCommonStatistics.extraMostCommons.length > 0">
         <ion-item class="groupTitle">
-          <ion-label>Dopunski brojevi</ion-label>
+          <ion-label>Extra numbers</ion-label>
         </ion-item>
         <div class="mostCommonDiv" *ngFor="let extraMostCommon of mostCommonStatistics.extraMostCommons">
           <div class="drawnDiv">{{extraMostCommon.drawn}}</div>
-          <div class="imgDiv">
-            <img *ngFor="let extraNum of extraMostCommon.numbers" src="../../assets/{{extraNum}}.svg" />
-          </div>
+            <img class="ball" *ngFor="let extraNum of extraMostCommon.numbers" src="../../assets/{{extraNum}}.svg" />
           <div class="drawnPercDiv">{{extraMostCommon.drawn/currentDraws * 100 | number : '1.0-2'}}%</div>
         </div>
       </div>

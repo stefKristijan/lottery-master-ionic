@@ -10,27 +10,30 @@
 </ion-header>
 
 <ion-content *ngIf="numberStats != null">
-    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
-        <ion-fab-button size="small" color="danger" routerLink="/{{lotteryId}}/generator">
-          <ion-icon name="flash"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-  <ion-item>
-    <ion-label id="drawNumber">Broj izvlačenja:</ion-label>
-    <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
-      <ion-label slot="start">2</ion-label>
-      <ion-label slot="end">{{maxDraws}}</ion-label>
-    </ion-range>
-  </ion-item>
-  <ion-button id="refreshBtn" expand="full" size="small" (click)="refreshStats()">
-      Osvježi
-    </ion-button>
-  <ion-row flex-wrap="nowrap" align-items="stretch">
-    <ion-item class="groupTitle">
-      <ion-label>Statistika brojeva</ion-label>
-    </ion-item>
-  </ion-row>
-  <ion-row flex-wrap="nowrap" align-items="stretch">
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+    <ion-fab-button size="small" color="primary" routerLink="/{{lotteryId}}/generator">
+      <ion-icon name="flash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" size-md="10">
+        <ion-item id="range">
+          <p style="margin-top: 30px; font-size: 0.8em">Number of draws:</p>
+          <ion-range min="2" max="{{maxDraws}}" step="1" pin="true" [(ngModel)]="draws">
+            <ion-label slot="start">2</ion-label>
+            <ion-label slot="end">{{maxDraws}}</ion-label>
+          </ion-range>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm="4" size-md="2" style="text-align: center;">
+        <ion-button style="width:100%" (click)="refreshStats()">
+          Refresh
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row>
     <div class="numStat" *ngFor="let num of numberStats.stats">
       <div class="drawn">{{num.drawn}}</div>
       <img class="ball" src="../../assets/{{num.number}}.svg" />
@@ -39,7 +42,7 @@
   </ion-row>
   <ion-row *ngIf="numberStats.extraStats != null && numberStats.extraStats.length > 0">
     <ion-item class="groupTitle">
-      <ion-label>Statistika dopunskih brojeva</ion-label>
+        <p style="margin-top: 30px">Extra numbers</p>
     </ion-item>
     <div class="numStat" *ngFor="let en of numberStats.extraStats">
       <div class="drawn">{{en.drawn}}</div>

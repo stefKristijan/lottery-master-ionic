@@ -14,8 +14,10 @@ import { getLocaleId, getLocaleDateTimeFormat } from '@angular/common';
 export class DrawsPage implements OnInit {
 
   draws = [];
+  maxDraws : number;
   lotteryName: string;
   lotteryId: number;
+  currentDraws=50;
 
 
   constructor(
@@ -35,8 +37,18 @@ export class DrawsPage implements OnInit {
       (error: HttpErrorResponse) => {
         console.log(error);
       });
-    this.lotteryService.lotteryDraws(this.lotteryId, 50).subscribe((draws => {
-      this.draws = draws
+    this.lotteryService.lotteryDraws(this.lotteryId, null).subscribe((draws => {
+      this.maxDraws = draws.length;
+      this.draws = draws.slice(0, 50);
+    }),
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      });
+  }
+
+  refresh(){
+    this.lotteryService.lotteryDraws(this.lotteryId, this.currentDraws).subscribe((draws => {
+      this.draws = draws;
     }),
       (error: HttpErrorResponse) => {
         console.log(error);
