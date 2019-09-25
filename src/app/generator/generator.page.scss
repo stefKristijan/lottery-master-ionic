@@ -1,178 +1,138 @@
-#header-img {
-    display: block;
-    background-image: url('../../assets/header-img.jpg');
-    background-size: cover;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    position: absolute;
+#ticket-img {
+  vertical-align: middle;
+  border-style: none;
+  z-index: 100;
+  height: 50px;
 }
 
-.content {
-    z-index: 99;
-    position: relative;
+#user-img{
+  max-width: 50px;
 }
 
-#user {
-    display: block;
-    font-size: 1.2em !important;
-    text-align: left;
-    margin: 1em;
+div{
+  text-align: center;
 }
 
-ion-col a {
-    font-size: 1.2em;
-    color: #42210B;
-    cursor: pointer;
-    float: right;
-    margin: 1em;
+.d-inline {
+  display: inline;
+  border-radius: 10px;
+  padding: 10px;
+  background-image: url("../../assets/header-img.jpg");
+  background-size: cover;
+  margin-left: -8px;
+  z-index: 0;
 }
 
-ion-col a:hover {
-    color: #553723;
-}
-
-ion-row #user-img {
-    display: block;
-    width: 205px;
-    height: 206px;
-    margin: 60px auto 0;
+#ticket-label {
+  display: inline;
+  font-size: 0.9em;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 5px;
 }
 
 ion-label {
-    font-size: 1.5em !important;
-    text-align: center;
-    color: #42210B !important;
-    margin: 0 auto;
-}
-
-ion-row#tickets {
-    margin: 5em auto;
-}
-
-ion-row#tickets img {
-    width: 350px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-#tickets ion-label {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
+  display: block;
+  font-size: 0.9em !important;
+  text-align: center;
+  color: #42210b !important;
+  margin: 10px 0;
 }
 
 ion-button {
-    --ion-color-danger: #42210B;
-    --ion-color-danger-rgb: 66,33,11;
-    --ion-color-danger-contrast: #ffffff;
-    --ion-color-danger-contrast-rgb: 255,255,255;
-    --ion-color-danger-shade: #3a1d0a;
-    --ion-color-danger-tint: #553723;
-    --border-radius: 0.5em;
-    font-size: 1.2em;
-    width: 170px;
-    margin: 40px auto;
+  --ion-color-danger: #42210b;
+  --ion-color-danger-rgb: 66, 33, 11;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #3a1d0a;
+  --ion-color-danger-tint: #553723;
+  --border-radius: 0.5em;
+  font-size: 1em;
 }
 
 .ball {
-    display: block;
-    width: 150px;
-    margin: 1em auto;
+  display: block;
+  width: 150px;
+  margin: 1em auto;
 }
 
 .form ion-item ion-label {
-    font-size: 1.2em !important;
-    color: #ad8348 !important;
-    margin-top : 1em;
+  font-size: 0.8em !important;
+  color: #ad8348 !important;
+  margin-top: 25px;
 }
 
-.range-label{
-    max-width: 50px;
-    font-size: 1em;
+.range-label {
+  max-width: 50px;
+  font-size: 1em;
 }
-.item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
-    overflow: unset !important;
+.item.sc-ion-label-md-h,
+.item .sc-ion-label-md-h {
+  overflow: unset !important;
 }
 ion-range {
-    --bar-background: #42210b4d;
-    --bar-background-active: #42210b;
-    --knob-background: #42210b;
-    --pin-background: #42210b;
-    max-width: 50% !important;;
+  --bar-background: #42210b4d;
+  --bar-background-active: #42210b;
+  --knob-background: #42210b;
+  --pin-background: #42210b;
+  max-width: 50% !important;
 }
 
-ion-select  {
-    color: #42210B !important;
-    opacity: 0.8 !important;
-    min-width: 90%;
-    width: 90%;
-    text-align: center;
+ion-select {
+  color: #42210b !important;
+  opacity: 0.8 !important;
+  min-width: 90%;
+  width: 90%;
+  text-align: center;
 }
 
 #generate-btn {
-    --ion-color-primary: #42210B;
-    --ion-color-primary-rgb: 66,33,11;
-    --ion-color-primary-contrast: #ffffff;
-    --ion-color-primary-contrast-rgb: 255,255,255;
-    --ion-color-primary-shade: #3a1d0a;
-    --ion-color-primary-tint: #553723;
-    --border-radius: 0.5em;
-    margin: 2em auto;
+  --ion-color-primary: #42210b;
+  --ion-color-primary-rgb: 66, 33, 11;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3a1d0a;
+  --ion-color-primary-tint: #553723;
+  --border-radius: 0.5em;
+  margin: 2em auto;
 }
 
 hr {
-    width: 90%;
-    border-top: 1px solid #42210B;
+  width: 100%;
+  border-top: 1px solid #42210b;
 }
 
 h1 {
-    text-align: center;
-    color: #42210B;
-    margin: 3em auto;
-}
-
-ion-col div {
-    margin: 5em auto;
+  text-align: center;
+  color: #42210b;
+  margin: 3em auto;
 }
 
 label {
-    display: block;
-    text-align: center;
-    margin: 1em auto;
-    color: #42210B;
+  display: block;
+  text-align: center;
+  margin: 1em auto;
+  color: #42210b;
 }
 
 ion-progress-bar {
-    width: 75%;
-    margin: 0.5em auto;
-    border-radius: 0.5em;
-    --progress-background: #ad8348;
-    --buffer-background: #ad834883;
+  width: 75%;
+  margin: 0.5em auto;
+  border-radius: 0.5em;
+  --progress-background: #ad8348;
+  --buffer-background: #ad834883;
 }
 
-#cost{
-    vertical-align: middle;
-    width: 100px;
-    display: inline-block;
+#cost {
+  vertical-align: middle;
+  width: 100px;
+  display: inline-block;
 }
 
 #cost-label {
-    margin-right: 10px;
-    font-size: 1.2em;
-    height: 100%;
-    vertical-align: middle;
-    display: inline-block;
-}
-
-@media only screen and (max-width: 991px) {
-    #tickets ion-label {
-        text-align: center;
-    }
-    ion-button {
-        margin: 1em auto;
-    }
+  margin-right: 10px;
+  font-size: 1.2em;
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
 }

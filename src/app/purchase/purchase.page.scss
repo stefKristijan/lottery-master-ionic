@@ -1,3 +1,48 @@
+#ticket-img {
+  vertical-align: middle;
+  border-style: none;
+  z-index: 100;
+  height: 50px;
+}
+
+#user-img{
+  max-width: 50px;
+}
+
+div{
+  text-align: center;
+}
+
+.d-inline {
+  display: inline;
+  border-radius: 10px;
+  padding: 10px;
+  background-image: url("../../assets/header-img.jpg");
+  background-size: cover;
+  margin-left: -8px;
+  z-index: 0;
+}
+
+#ticket-label {
+  display: inline;
+  font-size: 0.9em;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 5px;
+}
+
+ion-label {
+  display: block;
+  font-size: 0.9em !important;
+  text-align: center;
+  color: #42210b !important;
+  margin: 10px 0;
+}
+
+hr {
+  width: 100%;
+  border-top: 1px solid #42210b;
+}
 
  .StripeElement {
     box-sizing: border-box;
@@ -82,60 +127,9 @@
   height: 70%;
 }
 
-ion-row#tickets img {
-  width: 350px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-#tickets ion-label {
-  display: block;
-  text-align: center;
-  margin-top: 1.8em;
-}
-
 ion-select  {
   opacity: 0.8 !important;
   min-width: 90%;
   width: 90%;
   text-align: center;
-}
-
-#header-img {
-  display: block;
-  background-image: url('../../assets/header-img.jpg');
-  background-size: cover;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 250px;
-  position: absolute;
-}
-
-.content {
-  z-index: 99;
-  position: relative;
-}
-
-#user {
-  display: block;
-  font-size: 1.2em !important;
-  text-align: left;
-  margin: 1em;
-}
-
-#ticket-label{
-  font-size: 1.2em !important;
-  color: #42210B !important;
-  margin: 1em;
-  float: right;
-}
-
-ion-row #user-img {
-  display: block;
-  width: 205px;
-  height: 206px;
-  margin: 60px auto 0;
 }

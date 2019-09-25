@@ -18,19 +18,20 @@ declare var Stripe: any;
 })
 export class PurchasePage implements OnInit {
 
-  ticket= "TICKET_1";
+  ticket = "TICKET_1";
   elements: any;
   stripe: any;
   card: any;
   name: string;
   user = this._auth.user;
   error: string;
-  price= "0.50 €";
+  price = "0.50 €";
 
   constructor(
     private customerService: CustomerService,
     private _auth: AuthenticationService,
     private router: Router,
+    private storage: Storage
   ) { }
 
   ngOnInit() {
@@ -52,14 +53,14 @@ export class PurchasePage implements OnInit {
       }
     };
 
-    
+
     // Create an instance of the card Element.
     this.card = this.elements.create('card', { style: style });
     this.card.mount("#card-element");
   }
 
-  ticketChange(){
-    switch(this.ticket){
+  ticketChange() {
+    switch (this.ticket) {
       case "TICKET_1":
         this.price = "0.50 €";
         break;
@@ -76,7 +77,7 @@ export class PurchasePage implements OnInit {
         this.price = "25.00 €";
     }
   }
-  
+
   pay() {
 
     // Handle form submission.
@@ -120,14 +121,16 @@ export class PurchasePage implements OnInit {
       });
     } else {
       this._auth.refreshAuthUser();
-      let id = localStorage.getItem("currentLottery");
-      this.router.navigate([id + '/generator']);
+      this.storage.get("currentLottery").then(l => {
+        this.router.navigate([l + '/generator']);
+      })
     }
   }
 
-  back(){
-    let id = localStorage.getItem("currentLottery");
-    this.router.navigate([id + '/generator']);
+  back() {
+    this.storage.get("currentLottery").then(l => {
+      this.router.navigate([l + '/generator']);
+    })
   }
 }
 

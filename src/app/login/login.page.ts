@@ -34,9 +34,9 @@ export class LoginPage implements OnInit {
     this._auth.login(this.loginForm).subscribe(
       data => {
         this.getApiAuth();
-        localStorage.setItem(PASSWORD_KEY, this.loginForm.password);
+        // localStorage.setItem(PASSWORD_KEY, this.loginForm.password);
         //TODO - UNCOMMENT FOR MOBILE
-        //this.storage.set(PASSWORD_KEY, this.loginForm.password)
+        this.storage.set(PASSWORD_KEY, this.loginForm.password)
       },
       error => {
         this.error = error.error.replace("Customer", "Account");;
@@ -69,16 +69,18 @@ export class LoginPage implements OnInit {
   /** Get user infos */
   getApiAuth() {
     this._auth.apiAuth().subscribe(data => {
-      localStorage.setItem(USER_KEY, JSON.stringify(data));
+      // localStorage.setItem(USER_KEY, JSON.stringify(data));
       //UNCOMMENT FOR MOBILE
-      //this.storage.set(USER_KEY, JSON.stringify(data));
-      let id = localStorage.getItem("currentLottery");
-      this.router.navigate([id + '/generator']);
+      this.storage.set(USER_KEY, JSON.stringify(data));
+      this.storage.get("currentLottery").then(l => {
+        this.router.navigate([l + '/generator']);
+      })
     });
   }
 
   back() {
-    let id = localStorage.getItem("currentLottery");
-    this.router.navigate(['/home/' + id + '/tabs/draws']);
+    this.storage.get("currentLottery").then(id =>
+      this.router.navigate(['/home/' + id + '/tabs/draws'])
+    );
   }
 }

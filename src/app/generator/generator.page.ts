@@ -8,6 +8,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { CoefficientStatistics } from '../model/coefficient-statistics';
 import { Generator } from '../model/generator';
 import { Lottery } from '../model/lottery';
+import { Storage } from '@ionic/storage';
 
 export enum GeneratorType {
   DRAW = "Generate NUMBERS for next draw",
@@ -45,6 +46,7 @@ export class GeneratorPage implements OnInit {
     private lotteryService: LotteryService,
     private statisticsService: StatisticsService,
     private route: ActivatedRoute,
+    private storage: Storage,
     private router: Router
   ) { }
 
@@ -76,7 +78,7 @@ export class GeneratorPage implements OnInit {
     // console.log(btn[1]);
     this.statisticsService.generateNumbers(this.lottery.id, this.generator).subscribe((nc => {
       this.coefficients = nc;
-      this._auth.apiAuth().subscribe(u =>{
+      this._auth.apiAuth().subscribe(u => {
         this.user = this._auth.user;
       });
     }),
@@ -119,7 +121,8 @@ export class GeneratorPage implements OnInit {
   }
 
   back() {
-    let id = localStorage.getItem("currentLottery");
-    this.router.navigate(['/home/' + id + '/tabs/draws']);
+    this.storage.get("currentLottery").then(id =>
+      this.router.navigate(['/home/' + id + '/tabs/draws'])
+    );
   }
 }

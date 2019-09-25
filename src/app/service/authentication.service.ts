@@ -25,41 +25,40 @@ export class AuthenticationService {
     private storage: Storage,
     private http: HttpClient
   ) {
-    let user = localStorage.getItem(USER_KEY);
-    if(user != null){
-      this.loggedUser.next(Object.assign(new User, JSON.parse(user)));
-      this.pass = localStorage.getItem(PASSWORD_KEY)
-      this.login({ email: this.loggedUser.value.email, password: this.pass }).subscribe(
-                data => {
-                },
-                error => {
-                  console.log("Error: " + JSON.stringify(error))
-                  localStorage.remove(USER_KEY);
-                  localStorage.remove(PASSWORD_KEY);
-                  this.loggedUser.next(null);
-                }
-              );
+    // let user = localStorage.getItem(USER_KEY);
+    // if(user != null){
+    //   this.loggedUser.next(Object.assign(new User, JSON.parse(user)));
+    //   this.pass = localStorage.getItem(PASSWORD_KEY)
+    //   this.login({ email: this.loggedUser.value.email, password: this.pass }).subscribe(
+    //             data => {
+    //             },
+    //             error => {
+    //               console.log("Error: " + JSON.stringify(error))
+    //               localStorage.remove(USER_KEY);
+    //               localStorage.remove(PASSWORD_KEY);
+    //               this.loggedUser.next(null);
+    //             }
+    //           );
       
-    }
+    // }
     //TODO - ACTIVATE FOR MOBILE APPS AND COMMENT UPPER CODE
-    // storage.get(USER_KEY).then(user => {
-    //   if (user != null) {
-    //     this.loggedUser.next(Object.assign(new User, JSON.parse(user)));
-    //     storage.get(PASSWORD_KEY).then(pass => {
-    //       this.pass = pass;
-    //       this.login({ email: this.loggedUser.value.email, password: pass }).subscribe(
-    //         data => {
-    //         },
-    //         error => {
-    //           console.log("Error: " + JSON.stringify(error))
-    //           this.storage.remove(USER_KEY);
-    //           this.storage.remove(PASSWORD_KEY);
-    //           this.loggedUser.next(null);
-    //         }
-    //       );
-    //     });
-    //   }
-    // });
+    storage.get(USER_KEY).then(user => {
+      if (user != null) {
+        this.loggedUser.next(Object.assign(new User, JSON.parse(user)));
+        storage.get(PASSWORD_KEY).then(pass => {
+          this.pass = pass;
+          this.login({ email: this.loggedUser.value.email, password: pass }).subscribe(
+            data => {
+            },
+            error => {
+              this.storage.remove(USER_KEY);
+              this.storage.remove(PASSWORD_KEY);
+              this.loggedUser.next(null);
+            }
+          );
+        });
+      }
+    });
   }
 
   public login(formData): Observable<any> {
@@ -79,10 +78,10 @@ export class AuthenticationService {
   public logout(): Observable<any> {
     return this.http.get(this.url + 'logout').pipe(
       tap(unused => {
-        localStorage.removeItem(USER_KEY);
-        localStorage.removeItem(PASSWORD_KEY);
-        // this.storage.remove(USER_KEY);
-        // this.storage.remove(PASSWORD_KEY);
+        // localStorage.removeItem(USER_KEY);
+        // localStorage.removeItem(PASSWORD_KEY);
+        this.storage.remove(USER_KEY);
+        this.storage.remove(PASSWORD_KEY);
         this.loggedUser.next(null);
       })
     );
@@ -105,10 +104,10 @@ export class AuthenticationService {
 
   public refreshAuthUser() {
     this.apiAuth().subscribe(data => {
-      localStorage.setItem(USER_KEY, JSON.stringify(data));
+      // localStorage.setItem(USER_KEY, JSON.stringify(data));
+      this.storage.set(USER_KEY, JSON.stringify(data));
       this.loggedUser.getValue().generatesLeft = data.generatesLeft;
       //UNCOMMENT FOR MOBILE!!!
-      //this.storage.set(USER_KEY, JSON.stringify(data));
     });
   }
 

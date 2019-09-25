@@ -12,17 +12,49 @@ span{
 .alert-ios .alert-wrapper{
     max-width: unset !important;
     width: 100% !important;
+    white-space: pre-wrap !important;
 }
 
 .alert-md .alert-wrapper{
     max-width: unset !important;
     width: 90% !important;
+    white-space: pre-wrap !important;
 }
 
 .alert-wrapper{
     max-width: unset !important;
     width: 90% !important;
+    white-space: pre-wrap !important;
 }
+
+[aria-checked=true].sc-ion-alert-md .alert-radio-label.sc-ion-alert-md{
+    white-space: pre-wrap;
+}
+
+.alert-radio-label.sc-ion-alert-md{
+    white-space: pre-wrap;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    text-overflow: unset;
+    -ms-flex: 1;
+    flex: 1;
+    color: var(--ion-color-step-850,#262626);
+}
+
+.alert-radio-label.sc-ion-alert-md {
+    padding-left: 52px;
+    padding-right: 26px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    -ms-flex: 1;
+    flex: 1;
+    color: var(--ion-color-step-850,#262626);
+    font-size: 0.8em;
+    text-overflow: unset;
+    white-space: pre-wrap;
+    overflow: unset;
+}
+
 * {
     font-family: 'Montserrat', sans-serif;
 }
