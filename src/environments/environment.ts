@@ -8,7 +8,7 @@ export const environment = {
   // remoteUrl : 'http://192.168.0.13:8080/',
   remoteUrl : 'http://52.47.184.20:80/',
   // remoteUrl: 'http://18.194.88.128:9090/',
-  public_key: 'pk_live_nLkMaL9EBk2DVXdmlQhpX6Ll00MiUbUEMh'
+  public_key: ''
 };
 
 /*

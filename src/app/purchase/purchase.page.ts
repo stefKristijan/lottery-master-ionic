@@ -121,6 +121,9 @@ export class PurchasePage implements OnInit {
       });
     } else {
       this._auth.refreshAuthUser();
+      this._auth.apiAuth().subscribe(data=>{
+        this.user = data;
+      })
       this.storage.get("currentLottery").then(l => {
         this.router.navigate([l + '/generator']);
       })

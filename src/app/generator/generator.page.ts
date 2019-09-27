@@ -9,6 +9,7 @@ import { CoefficientStatistics } from '../model/coefficient-statistics';
 import { Generator } from '../model/generator';
 import { Lottery } from '../model/lottery';
 import { Storage } from '@ionic/storage';
+import { User } from '../model/user';
 
 export enum GeneratorType {
   DRAW = "Generate NUMBERS for next draw",
@@ -33,7 +34,7 @@ export class GeneratorPage implements OnInit {
   generator: Generator;
   types = GeneratorType;
   sorts = GeneratorSort;
-  user = this._auth.user;
+  user : User;
   lottery = new Lottery();
   draws: any;
   coefficients: CoefficientStatistics;
@@ -51,6 +52,7 @@ export class GeneratorPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = this._auth.user;
     this.lottery.id = +this.route.snapshot.paramMap.get("id");
     this.lotteryService.lotteryById(this.lottery.id).subscribe((l => {
       this.lottery = l;
@@ -79,6 +81,7 @@ export class GeneratorPage implements OnInit {
     this.statisticsService.generateNumbers(this.lottery.id, this.generator).subscribe((nc => {
       this.coefficients = nc;
       this._auth.apiAuth().subscribe(u => {
+        this._auth.refreshAuthUser();
         this.user = this._auth.user;
       });
     }),
